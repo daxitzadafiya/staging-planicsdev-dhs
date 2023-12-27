@@ -492,161 +492,23 @@
                                                         <h2>{{ $client_review->name }}</h2>
                                                         <p> 
                                                             {{ $client_review->rating }}
-                                                            <i class="fa-solid fa-star"></i>
-                                                            <i class="fa-solid fa-star"></i>
-                                                            <i class="fa-solid fa-star"></i>
-                                                            <i class="fa-solid fa-star"></i>
-                                                            <i class="fa-solid fa-star"></i>
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                @if($i <=  $client_review->rating)
+                                                                    <i class="fa-solid fa-star"></i>
+                                                                @else
+                                                                    @if(str_contains($client_review->rating, "."))
+                                                                        <i class="fa-solid fa-star-half"></i>
+                                                                    @else
+                                                                        <i class="fa-regular fa-star"></i>
+                                                                    @endif    
+                                                                @endif
+                                                            @endfor
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimoniols-area-block d-lg-none">
-                    <div class="testimoniols">
-                        <div class="testimoniols-text">
-                            <div class="testimoniols-content-img">
-                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                            </div>
-                            <p class="paragraph"> Great working with Daxit and will work with him again.</p>
-                            <div class="test-flex">
-                                <div class="test-img">
-                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg1.png') }}" alt="">
-                                </div>
-                                <div class="testimoniols-content">
-                                    <h2>Smit Pinga</h2>
-                                    <p>5.0 <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimoniols-text">
-                            <div class="testimoniols-content-img">
-                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                            </div>
-                            <p class="paragraph"> Tanahair is the friendliest and most efficient company
-                                I have ever used.
-                                The whole thing takes time to introduce the product and as a result puts
-                                forward only the best opportunities that really suit you. they help from
-                                start to finish to create a great product identity for your company.</p>
-                            <div class="test-flex">
-                                <div class="test-img">
-                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg2.png') }}" alt="">
-                                </div>
-                                <div class="testimoniols-content">
-                                    <h2>Mahek Mania</h2>
-                                    <p>4.0 <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <!-- <i class="fa-solid fa-star"></i> -->
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimoniols-text">
-                            <div class="testimoniols-content-img">
-                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                            </div>
-                            <p class="paragraph"> Tanahair is the friendliest and most efficient company
-                                I have ever used.
-                                The whole thing takes time to introduce the product and as a result puts
-                                forward only the best opportunities that really suit you. they help from
-                                start to finish to create a great product identity for your company.</p>
-                            <div class="test-flex">
-                                <div class="test-img">
-                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg3.png') }}" alt="">
-                                </div>
-                                <div class="testimoniols-content">
-                                    <h2>Rahul Patel</h2>
-                                    <p>4.3 <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star-half"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimoniols-text">
-                            <div class="testimoniols-content-img">
-                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                            </div>
-                            <p class="paragraph"> Tanahair is the friendliest and most efficient company
-                                I have ever used.
-                                The whole thing takes time to introduce the product and as a result puts
-                                forward only the best opportunities that really suit you. they help from
-                                start to finish to create a great product identity for your company.</p>
-                            <div class="test-flex">
-                                <div class="test-img">
-                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg4.png') }}" alt="">
-                                </div>
-                                <div class="testimoniols-content">
-                                    <h2>Kinjal Patel</h2>
-                                    <p>4.3 <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star-half"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimoniols-text">
-                            <div class="testimoniols-content-img">
-                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                            </div>
-                            <p class="paragraph"> Tanahair is the friendliest and most efficient company
-                                I have ever used.
-                                The whole thing takes time to introduce the product and as a result puts
-                                forward only the best opportunities that really suit you. they help from
-                                start to finish to create a great product identity for your company.</p>
-                            <div class="test-flex">
-                                <div class="test-img">
-                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg5.png') }}" alt="">
-                                </div>
-                                <div class="testimoniols-content">
-                                    <h2>Priyanka Chauhan</h2>
-                                    <p>4.3 <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star-half"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimoniols-text">
-                            <div class="testimoniols-content-img">
-                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                            </div>
-                            <p class="paragraph"> Tanahair is the friendliest and most efficient company
-                                I have ever used.
-                                The whole thing takes time to introduce the product and as a result puts
-                                forward only the best opportunities that really suit you. they help from
-                                start to finish to create a great product identity for your company.</p>
-                            <div class="test-flex">
-                                <div class="test-img">
-                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg6.png') }}" alt="">
-                                </div>
-                                <div class="testimoniols-content">
-                                    <h2>Kaushik Don</h2>
-                                    <p>4.3 <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star-half"></i>
-                                    </p>
                                 </div>
                             </div>
                         </div>

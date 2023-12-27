@@ -42,11 +42,17 @@
                             <td class="text-center">
                                 <div class="flex items-center">
                                     <div class="flex items-center"> 
-                                        <i data-lucide="star" class="text-pending fill-pending/30 w-4 h-4 mr-1"></i> 
-                                        <i data-lucide="star" class="text-pending fill-pending/30 w-4 h-4 mr-1"></i> 
-                                        <i data-lucide="star" class="text-pending fill-pending/30 w-4 h-4 mr-1"></i> 
-                                        <i data-lucide="star-half" class="text-pending fill-pending/30 w-4 h-4 mr-1"></i> 
-                                        <i data-lucide="star" class="text-slate-400 fill-slate/30 w-4 h-4 mr-1"></i> 
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if($i <=  $clientReview->rating)
+                                                <i data-lucide="star" class="text-pending fill-pending/30 w-4 h-4 mr-1"></i> 
+                                            @else
+                                                @if(str_contains($clientReview->rating, "."))
+                                                    <i data-lucide="star-half" class="text-pending fill-pending/30 w-4 h-4 mr-1"></i>
+                                                @else
+                                                    <i data-lucide="star" class="text-slate-400 fill-slate/30 w-4 h-4 mr-1"></i> 
+                                                @endif    
+                                            @endif
+                                        @endfor
                                     </div>
                                     <div class="text-xs text-slate-500 ml-1">({{ $clientReview->rating }})</div>
                                 </div>
