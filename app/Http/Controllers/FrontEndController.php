@@ -3,19 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EnquiryMail;
 use App\Models\Achievement;
+use App\Models\Enquiry;
+use App\Models\Goal;
 use App\Models\HeroSection;
+use App\Models\OurClient;
 use App\Models\PointOfDifference;
 use App\Models\Portfolio;
 use App\Models\Service;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontEndController extends Controller
 {
     public function dashboard()
     {
-        return view('pages.dashboard');
+        $total_goals = Goal::where('is_active', 1)->count();
+
+        $total_clients_and_partners = OurClient::where('is_active', 1)->count();
+
+        $total_enquiries = Enquiry::count();
+
+        $total_portfolios = Portfolio::where('is_active', 1)->count();
+
+        return view('pages.dashboard', compact('total_goals', 'total_clients_and_partners', 'total_enquiries', 'total_portfolios'));
     }
 
     public function index()
@@ -33,8 +46,10 @@ class FrontEndController extends Controller
     {
         $setting = Setting::first();
         $services = Service::where('is_active', 1)->with('service_categories')->get();
+        $goals = Goal::where('is_active', 1)->get();
+        $ourClients = OurClient::where('is_active', 1)->get();
 
-        return view('frontend.about', compact('setting', 'services'));
+        return view('frontend.about', compact('setting', 'services', 'goals', 'ourClients'));
     }
 
     public function show(Request $request)
@@ -90,5 +105,38 @@ class FrontEndController extends Controller
         $services = Service::where('is_active', 1)->with('service_categories')->get();
 
         return view('frontend.contact-us', compact('setting', 'services'));
+    }
+
+    public function enquiry(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'contact' => 'required',
+            'subject' => 'required',
+            'message' => 'required'
+        ]);
+
+        $data = $request->except('_token');
+
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new EnquiryMail($data));
+
+        Enquiry::create($data);
+
+        return redirect()->back()->with('message', 'Enquiry Send Successfully!');
+    }
+
+    public function enquiriesList()
+    {
+        $enquiries = Enquiry::paginate();
+
+        return view('pages.enquiry.index', compact('enquiries'));
+    }
+
+    public function destroy(Enquiry $enquiry)
+    {   
+        $enquiry->delete();
+
+        return redirect()->route('enquiries.index');
     }
 }

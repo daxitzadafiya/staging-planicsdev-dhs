@@ -22,6 +22,11 @@ return new class extends Migration
             $table->longText('about_us_description')->nullable();
             $table->string('about_us_image')->nullable();
             $table->longText('about_us_key_partners')->nullable();
+            $table->string('contact_us_title')->nullable();
+            $table->longText('contact_us_description')->nullable();
+            $table->string('contact_us_image')->nullable();
+            $table->string('clients_partners_title')->nullable();
+            $table->longText('clients_partners_description')->nullable();
             $table->string('point_of_differences_title')->nullable();
             $table->longText('point_of_differences_description')->nullable();
             $table->string('services_title')->nullable();

@@ -4,7 +4,9 @@ use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CoreValueController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\GoalController;
 use App\Http\Controllers\HeroSectionController;
+use App\Http\Controllers\OurClientController;
 use App\Http\Controllers\PointOfDifferenceController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ServiceCategoryController;
@@ -35,6 +37,7 @@ Route::name('frontend.')->group(function () {
     }
     Route::get('portfolio', [FrontEndController::class, 'portfolio'])->name('portfolio');
     Route::get('contact-us', [FrontEndController::class, 'contactUs'])->name('contact-us');
+    Route::post('enquiries', [FrontEndController::class, 'enquiry'])->name('enquiries.store');
 });
 
 Route::controller(AuthController::class)->prefix('admin')->middleware('logged_in')->group(function() {
@@ -57,8 +60,12 @@ Route::middleware('auth')->prefix('admin')->group(function() {
     Route::resource('core-values', CoreValueController::class);
     Route::resource('technologies', TechnologyController::class);
     Route::resource('achievements', AchievementController::class);
-
+    Route::resource('goals', GoalController::class);
+    Route::resource('our-clients', OurClientController::class);
     Route::resource('portfolios', PortfolioController::class);
+
+    Route::get('enquiries', [FrontEndController::class, 'enquiriesList'])->name('enquiries.index');
+    Route::delete('enquiries/{enquiry}', [FrontEndController::class, 'destroy'])->name('enquiries.destroy');
 
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('settings/store', [SettingController::class, 'store'])->name('settings.store');

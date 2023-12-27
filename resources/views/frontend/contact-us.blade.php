@@ -39,44 +39,64 @@
     <!-- contact-form start -->
     <section class="contact-form-wrapper padding">
         <div class="container">
+            @if(Session::has('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ Session::get('message') }}.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="row align-items-center">
-                <div class="col-lg-6 contact-form-img wow fadeInLeft" data-wow-delay=".4s" data-tilt=" "
-                    data-tilt-max=" 2 " data-tilt-speed=" 1000 "
-                    style=" will-change: transform; transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); ">
-                    <img src="{{ asset('frontend/assets/img/contactpage/form.png') }}" alt="" data-tilt=" " data-tilt-max=" 10 "
-                        data-tilt-speed=" 1000 "
-                        style=" will-change: transform; transform: perspective(5000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);" />
+                <div class="col-lg-6 contact-form-img wow fadeInLeft" data-wow-delay=".4s" data-tilt=""
+                    data-tilt-max="2" data-tilt-speed="1000"
+                    style="will-change: transform; transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); ">
+                    <img src="{{ url(Storage::url($setting->contact_us_image)) }}" alt="{{ env('APP_NAME') }}" data-tilt="" data-tilt-max="10"
+                        data-tilt-speed="1000"
+                        style="will-change: transform; transform: perspective(5000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);" />
                 </div>
                 <div class="col-lg-6 mt-5 mt-lg-0 wow fadeInRight" data-wow-delay=".4s">
                     <div class="contact-left">
-                        <h2>Let’s talk about your project</h2>
+                        <h2>{{ $setting->contact_us_title }}</h2>
                         <h5>
-                            when an unknown printer took a galley of type and scrambled it
-                            to make a type specimen book. It has survived not only five
-                            centuries,
+                            {{ $setting->contact_us_description }}
                         </h5>
                     </div>
                     <div class="contact-from">
-                        <form>
+                        <form method="post" action="{{ route('frontend.enquiries.store') }}">
+                            @csrf
                             <div class="col-12">
-                                <input type="text" placeholder="Full Name" class="form-control" required />
+                                <input type="text" name="name" placeholder="Enter Full Name" class="form-control" />
+                                @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="email" placeholder="Email Address" class="form-control" required />
+                                    <input type="email" name="email" placeholder="Enter Email Address" class="form-control" />
+                                    @error('email')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="tel" placeholder="Mobile Number" class="form-control" required />
+                                    <input type="tel" name="contact" placeholder="Enter Contact" class="form-control" />
+                                    @error('contact')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12">
-                                <input type="text" placeholder="Subject" class="form-control" required />
+                                <input type="text" name="subject" placeholder="Enter Subject" class="form-control" />
+                                @error('subject')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="col-12">
-                                <textarea placeholder="Message" class="form-control" rows="3"></textarea>
+                                <textarea placeholder="Enter Message" name="message" class="form-control" rows="3"></textarea>
+                                @error('message')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div>
-                                <a href="" class="btn">Submit Now</a>
+                                <button type="submit" class="btn">Submit Now</button>
                             </div>
                         </form>
                     </div>
@@ -91,7 +111,7 @@
         <div class="container">
             <div class="section-title">
                 <h2 class="wow fadeInUp" data-wow-delay=".4s">
-                    Please note that all message will be replied within the next 12hours
+                    Please note that all message will be replied within the next 12 Hours
                 </h2>
             </div>
             <div class="row">
@@ -102,7 +122,9 @@
                         </div>
                         <div class="contact-card-details">
                             <h5>CONTACT INFO</h5>
-                            <a href="tel:97374 03846">97374 03846</a>
+                            <a href="{{ isset($setting->footer_contact) && !empty($setting->footer_contact) ? 'tel:'.$setting->footer_contact : 'javascript:void(0)' }}">
+                                {{ $setting->footer_contact }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -113,8 +135,7 @@
                         </div>
                         <div class="contact-card-details">
                             <h5>WORKING HOURS</h5>
-                            <a href="">Mon to Fri - 9.00 to 6.00</a>
-                            <a href=""> Saturday - 9.00 to 1.00</a>
+                            <a href="javascript:void(0)">Mon to Fri - 9:00 AM to 6:30 PM</a>
                         </div>
                     </div>
                 </div>
@@ -125,7 +146,7 @@
                         </div>
                         <div class="contact-card-details">
                             <h5>EMAIL ADDRESS</h5>
-                            <a href="mailto:info@planicsdev.com">info@planicsdev.com</a>
+                            <a href="{{ isset($setting->footer_email) && !empty($setting->footer_email) ? 'mailto:'.$setting->footer_email : 'javascript:void(0)' }}">{{ $setting->footer_email }}</a>
                         </div>
                     </div>
                 </div>
@@ -137,7 +158,7 @@
                         <div class="contact-card-details">
                             <h5>OUR LOCATION</h5>
                             <a href="https://www.google.com/maps/place/Planics+Dev/@21.2292401,72.8976224,17z/data=!3m1!4b1!4m5!3m4!1s0x3be04f7eeb3a003b:0xc3451e5a937171c9!8m2!3d21.2292401!4d72.8998111"
-                                target="_blank">410, Time Shoppers, Sarthana Jakatnaka,Surat.</a>
+                                target="_blank">{{ $setting->fullAddress() }}</a>
                         </div>
                     </div>
                 </div>

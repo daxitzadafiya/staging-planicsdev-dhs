@@ -27,6 +27,16 @@
                         About Us
                     </a> 
                 </li>
+                <li id="contact-us-tab" class="nav-item" role="presentation"> 
+                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#contact-us" aria-controls="contact-us" aria-selected="false" role="tab">
+                        Contact Us
+                    </a> 
+                </li>
+                <li id="clients-partners-tab" class="nav-item" role="presentation"> 
+                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#clients-partners" aria-controls="clients-partners" aria-selected="false" role="tab">
+                        Clients & Partners
+                    </a>
+                </li>
                 <li id="point-of-difference-tab" class="nav-item" role="presentation"> 
                     <a href="javascript:;" class="nav-link py-4" data-tw-target="#point-of-difference" aria-controls="point-of-difference" aria-selected="false" role="tab">
                         Point Of Difference 
@@ -112,36 +122,99 @@
                             </div>
                         @endif
                         <div class="gap-x-5 border border-slate-200 rounded-md p-8 mt-3">
-                            <div>
-                                <div class="flex justify-between gap-x-5">
-                                    <div class="w-full">
-                                        <label for="about_us_title" class="form-label">Title</label>
-                                        <input id="about_us_title" type="text" name="about_us_title" class="form-control w-full" placeholder="Please Enter Title">
+                            <h2 class="mb-3 font-bold">Key Partners</h2>
+                            <div class="about_us_key_partners_div">
+                                @if(isset($setting->about_us_key_partners) && !empty($setting->about_us_key_partners))
+                                    @foreach ($setting->about_us_key_partners as $key => $about_us_key_partner)
+                                        @if($loop->first)
+                                            <div class="flex justify-between gap-x-5">
+                                                <div class="w-full">
+                                                    <label for="about_us_key_partners_title_{{ $key }}" class="form-label">Title</label>
+                                                    <input id="about_us_key_partners_title_{{ $key }}" type="text" name="about_us_key_partners[{{ $key }}][title]" class="form-control w-full" value="{{ $about_us_key_partner['title'] }}" placeholder="Please Enter Title" autocomplete="off">
+                                                    <small class="text-danger" id="about_us_key_partners_title_error_{{ $key }}"></small>
+                                                </div>
+                                                <div class="w-full">
+                                                    <label for="about_us_key_partners_description_{{ $key }}" class="form-label">Description</label>
+                                                    <textarea id="about_us_key_partners_description_{{ $key }}" name="about_us_key_partners[{{ $key }}][description]" cols="8" rows="4" class="form-control w-full" placeholder="Please Enter Description" autocomplete="off">
+                                                        {{ $about_us_key_partner['description'] }}
+                                                    </textarea>
+                                                    <small class="text-danger" id="about_us_key_partners_description_error_{{ $key }}"></small>
+                                                </div>
+                                                <div class="mt-6">
+                                                    <button type="button" class="btn btn-sm btn-primary w-full addMore" data-count="{{ count($setting->about_us_key_partners) }}" onclick="addMore(this)">
+                                                        <i data-lucide="plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="flex justify-between items-center mt-5 gap-x-5 removeRow">
+                                                <div class="w-full">
+                                                    <input id="about_us_key_partners_title_{{ $key }}" type="text" name="about_us_key_partners[{{ $key }}][title]" class="form-control w-full" value="{{ $about_us_key_partner['title'] }}" placeholder="Please Enter Title" autocomplete="off">
+                                                    <small class="text-danger" id="about_us_key_partners_title_error_{{ $key }}"></small>
+                                                </div>
+                                                <div class="w-full">
+                                                    <textarea id="about_us_key_partners_description_{{ $key }}" name="about_us_key_partners[{{ $key }}][description]" cols="8" rows="4" class="form-control w-full" placeholder="Please Enter Description" autocomplete="off">
+                                                        {{ $about_us_key_partner['description'] }}
+                                                    </textarea>
+                                                    <small class="text-danger" id="about_us_key_partners_description_error_{{ $key }}"></small>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="btn btn-sm btn-danger w-full" data-count="{{ count($setting->about_us_key_partners) }}" onclick="removeRow(this)">
+                                                        <i data-lucide="minus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @else    
+                                    <div class="flex justify-between gap-x-5">
+                                        <div class="w-full">
+                                            <label for="about_us_key_partners_title_0" class="form-label">Title</label>
+                                            <input id="about_us_key_partners_title_0" type="text" name="about_us_key_partners[0][title]" class="form-control w-full" placeholder="Please Enter Title" autocomplete="off">
+                                            <small class="text-danger" id="about_us_key_partners_title_error_0"></small>
+                                        </div>
+                                        <div class="w-full">
+                                            <label for="about_us_key_partners_description_0" class="form-label">Description</label>
+                                            <textarea id="about_us_key_partners_description_0" name="about_us_key_partners[0][description]" cols="8" rows="4" class="form-control w-full" placeholder="Please Enter Description" autocomplete="off"></textarea>
+                                            <small class="text-danger" id="about_us_key_partners_description_error_0"></small>
+                                        </div>
+                                        <div class="mt-6">
+                                            <button type="button" class="btn btn-sm btn-primary w-full addMore" data-count="0" onclick="addMore(this)">
+                                                <i data-lucide="plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="w-full">
-                                        <label for="about_us_title" class="form-label">Description</label>
-                                        <input id="about_us_title" type="text" name="about_us_title" class="form-control w-full" placeholder="Please Enter Title">
-                                    </div>
-                                    <div class="mt-6">
-                                        <button type="button" class="btn btn-sm btn-primary w-full">
-                                            <i data-lucide="plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="flex justify-between items-center mt-5 gap-x-5">
-                                    <div class="w-full">
-                                        <input id="about_us_title" type="text" name="about_us_title" class="form-control w-full" placeholder="Please Enter Title">
-                                    </div>
-                                    <div class="w-full">
-                                        <input id="about_us_title" type="text" name="about_us_title" class="form-control w-full" placeholder="Please Enter Title">
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-sm btn-primary w-full">
-                                            <i data-lucide="minus"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                @endif
                             </div>
+                        </div>
+                    </div>
+                    <div id="contact-us" class="tab-pane" role="tabpanel" aria-labelledby="contact-us-tab">
+                        <div>
+                            <label for="contact_us_title" class="form-label">Title</label>
+                            <input id="contact_us_title" type="text" name="contact_us_title" class="form-control w-full" value="{{ isset($setting->contact_us_title) ? $setting->contact_us_title : old('contact_us_title') }}" placeholder="Please Enter Title">
+                        </div>
+                        <div class="mt-3">
+                            <label for="contact_us_description" class="form-label">Description</label>
+                            <textarea name="contact_us_description" id="contact_us_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->contact_us_description) ? $setting->contact_us_description : old('contact_us_description') }}</textarea>
+                        </div>
+                        <div class="mt-3">
+                            <label for="contact_us_image" class="form-label">Image</label>
+                            <input id="contact_us_image" type="file" name="contact_us_image" class="form-control w-full">
+                        </div>
+                        @if(isset($setting->contact_us_image) && !empty($setting->contact_us_image))
+                            <div class="w-24 h-24 image-fit mt-3 cursor-pointer zoom-in">
+                                <img class="rounded-full" src="{{ url(Storage::url($setting->contact_us_image)) }}">
+                            </div>
+                        @endif
+                    </div>
+                    <div id="clients-partners" class="tab-pane" role="tabpanel" aria-labelledby="clients-partners-tab">
+                        <div>
+                            <label for="clients_partners_title" class="form-label">Title</label>
+                            <input id="clients_partners_title" type="text" name="clients_partners_title" class="form-control w-full" value="{{ isset($setting->clients_partners_title) ? $setting->clients_partners_title : old('clients_partners_title') }}" placeholder="Please Enter Title">
+                        </div>
+                        <div class="mt-3">
+                            <label for="clients_partners_description" class="form-label">Description</label>
+                            <textarea name="clients_partners_description" id="clients_partners_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->clients_partners_description) ? $setting->clients_partners_description : old('clients_partners_description') }}</textarea>
                         </div>
                     </div>
                     <div id="point-of-difference" class="tab-pane" role="tabpanel" aria-labelledby="point-of-difference-tab">
@@ -282,3 +355,62 @@
         </div>
     </div>
 @endsection
+
+@push('custom-scripts')
+    <script>
+        const addMore = (data) => {
+            let count = $(data).attr('data-count');
+                count = parseInt(count);
+
+            $(`#about_us_key_partners_title_${count}`).removeClass('border-danger');
+            $(`#about_us_key_partners_description_${count}`).removeClass('border-danger');
+            $(`#about_us_key_partners_title_error_${count}`).html('');
+            $(`#about_us_key_partners_description_error_${count}`).html('');
+            if($(`#about_us_key_partners_title_${count}`).val() == "") {
+                $(`#about_us_key_partners_title_${count}`).addClass('border-danger');
+                $(`#about_us_key_partners_title_error_${count}`).html('The Title field is required!');
+                return false;
+            }
+
+            if($(`#about_us_key_partners_description_${count}`).val() == "") {
+                $(`#about_us_key_partners_description_${count}`).addClass('border-danger');
+                $(`#about_us_key_partners_description_error_${count}`).html('The Description field is required!');
+                return false;
+            }
+
+            let increment = ++count;
+
+            let html = ``;
+                html += `<div class="flex justify-between items-center mt-5 gap-x-5 removeRow">`;
+                html += `<div class="w-full">`;
+                html += `<input id="about_us_key_partners_title_${increment}" type="text" name="about_us_key_partners[${increment}][title]" class="form-control w-full" placeholder="Please Enter Title" autocomplete="off">`;
+                html += `<small class="text-danger" id="about_us_key_partners_title_error_${increment}"></small>`;
+                html += `</div>`;
+                html += `<div class="w-full">`;
+                html += `<textarea id="about_us_key_partners_description_${increment}" name="about_us_key_partners[${increment}][description]" cols="8" rows="4" class="form-control w-full" placeholder="Please Enter Description" autocomplete="off"></textarea>`;
+                html += `<small class="text-danger" id="about_us_key_partners_description_error_${increment}"></small>`;
+                html += `</div>`;
+                html += `<div>`;
+                html += `<button type="button" class="btn btn-sm btn-danger w-full" data-count="${increment}" onclick="removeRow(this)">`;
+                html += `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="minus" data-lucide="minus" class="lucide lucide-minus">`;
+                html += `<line x1="5" y1="12" x2="19" y2="12"></line>`;
+                html += `</svg>`;
+                html += `</button>`;
+                html += `</div>`;
+                html += `</div>`;
+
+                $('.addMore').attr('data-count', increment);
+                $('.about_us_key_partners_div').append(html);
+        };
+
+        const removeRow = (data) => {
+            let count = $(data).attr('data-count');
+                count = parseInt(count);
+                count = Math.max(0, count - 1);
+
+            $('.addMore').attr('data-count', count);
+
+            $(data).parents('.removeRow').remove();
+        };
+    </script>
+@endpush

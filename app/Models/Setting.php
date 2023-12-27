@@ -23,6 +23,11 @@ class Setting extends Model
         'about_us_description',
         'about_us_image',
         'about_us_key_partners',
+        'contact_us_title',
+        'contact_us_description',
+        'contact_us_image',
+        'clients_partners_title',
+        'clients_partners_description',
         'point_of_differences_title',
         'point_of_differences_description',
         'services_title',
@@ -54,8 +59,13 @@ class Setting extends Model
     protected function aboutUsKeyPartners(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => json_encode($value, true),
-            set: fn ($value) => json_decode($value, true),
+            get: fn ($value) => json_decode($value, true),
+            set: fn ($value) => json_encode($value, true),
         );
+    }
+
+    public function fullAddress()
+    {
+        return "{$this->footer_address_one} {$this->footer_address_two}";
     }
 }

@@ -72,6 +72,11 @@ body {
   outline: inherit;
 }
 
+.clients-wrapper {
+  background: url(../img/achievement-bg.png);
+  background-size: cover;
+}
+
 a:focus,
 .button:focus {
   text-decoration: none;

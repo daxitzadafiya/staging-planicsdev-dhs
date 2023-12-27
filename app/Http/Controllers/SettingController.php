@@ -52,6 +52,17 @@ class SettingController extends Controller
             $data['about_us_image'] = $request->file('about_us_image')->store('setting/image', ['disk' => 'public']);
         }
 
+        if($request->has('contact_us_image')) {
+
+            $setting = Setting::first();
+
+            if (isset($setting->contact_us_image) && Storage::disk('public')->exists($setting->contact_us_image)) {
+                Storage::disk('public')->delete($setting->contact_us_image);
+            }
+
+            $data['contact_us_image'] = $request->file('contact_us_image')->store('setting/image', ['disk' => 'public']);
+        }
+
         if($request->has('achievement_logo')) {
 
             $setting = Setting::first();

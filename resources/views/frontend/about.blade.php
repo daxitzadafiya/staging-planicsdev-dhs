@@ -50,75 +50,45 @@
                             {{ $setting->about_us_description }}
                         </p>
                     </div>
-                    <div class="aboutus-content-list wow fadeInUp" data-wow-delay=".6s">
-                        <div class="aboutus-content-img">
-                            <img src="{{ asset('frontend/assets/img/aboutus-page/checkmark.png') }}" alt="">
+                    @foreach($setting->about_us_key_partners as $index => $about_us_key_partner)
+                        <div class="aboutus-content-list wow fadeInUp" data-wow-delay="{{ '.'.($index + 6).'s' }}">
+                            <div class="aboutus-content-img">
+                                <img src="{{ asset('frontend/assets/img/aboutus-page/checkmark.png') }}" alt="">
+                            </div>
+                            <div class="aboutus-content-text">
+                                <h2>{{ $about_us_key_partner['title'] }}</h2>
+                                <p>
+                                    {{ $about_us_key_partner['description'] }}
+                                </p>
+                            </div>
                         </div>
-                        <div class="aboutus-content-text">
-                            <h2>Trusted Partner</h2>
-                            <p>As your trusted partner, we are committed to your success. With our collaborative
-                                approach and dedication to delivering
-                                exceptional results, we work hand in hand with you to achieve your business goals</p>
-                        </div>
-                    </div>
-                    <div class="aboutus-content-list wow fadeInUp" data-wow-delay=".7s">
-                        <div class="aboutus-content-img">
-                            <img src="{{ asset('frontend/assets/img/aboutus-page/checkmark.png') }}" alt="">
-                        </div>
-                        <div class="aboutus-content-text">
-                            <h2>Responsibility</h2>
-                            <p>We take our responsibility seriously, ensuring ethical practices, sustainability, and the
-                                utmost care for your project
-                                and the wider community.</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay=".5s" data-tilt-max="2"
-                    data-tilt-speed="1000"
+                    data-tilt-speed="1000" data-tilt=""
                     style="will-change: transform; transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
                     <div class="about-content-image">
                         <img src="{{ url(Storage::url($setting->about_us_image)) }}" alt="{{ env('APP_NAME') }}" data-tilt-max="10"
-                            data-tilt-speed="1000"
+                            data-tilt-speed="1000" data-tilt=""
                             style="will-change: transform; transform: perspective(5000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
                     </div>
                 </div>
             </div>
             <div class="padding pb-0">
                 <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                        <div class="goal-wrapper">
-                            <div class="goal-img">
-                                <img src="{{ asset('frontend/assets/img/aboutus-page/goal1.png') }}" alt="">
+                    @foreach ($goals as $index => $goal)
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ '.'.($index + 4).'s' }}">
+                            <div class="goal-wrapper">
+                                <div class="goal-img">
+                                    <img src="{{ url(Storage::url($goal->image)) }}" alt="{{ env('APP_NAME') }}">
+                                </div>
+                                <h2>{{ $goal->title }}</h2>
+                                <p>
+                                    {{ $goal->description }}
+                                </p>
                             </div>
-                            <h2>Over Vision</h2>
-                            <p>To be a trailblazer in the IT industry, driving innovation and transforming businesses
-                                through cutting-edge solutions
-                                that shape the digital future.</p>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                        <div class="goal-wrapper">
-                            <div class="goal-img">
-                                <img src="{{ asset('frontend/assets/img/aboutus-page/goal2.png') }}" alt="">
-                            </div>
-                            <h2>Over Mision</h2>
-                            <p>Our mission is to empower businesses with transformative technology solutions, fostering
-                                growth and success. We strive
-                                to exceed client expectations by delivering exceptional quality, innovation, and
-                                unparalleled customer service.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                        <div class="goal-wrapper">
-                            <div class="goal-img">
-                                <img src="{{ asset('frontend/assets/img/aboutus-page/goal3.png') }}" alt="">
-                            </div>
-                            <h2>Quality Management</h2>
-                            <p>Excellence is our priority. Through rigorous quality management practices, we
-                                consistently deliver superior solutions
-                                that exceed client expectations and drive measurable results.</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -129,33 +99,17 @@
     <div class="clients-wrapper padding">
         <div class="container">
             <div class="section-title">
-                <h2 class="wow fadeInUp" data-wow-delay=".4s">Our Clients & Partners</h2>
+                <h2 class="wow fadeInUp" data-wow-delay=".4s">{{ $setting->clients_partners_title }}</h2>
                 <p class="wow fadeInUp" data-wow-delay=".5s">
-                    We provide to you the best choiches for you. Adjust it to your
-                    health needs and make sure your undergo treatment with our highly
-                    qualified doctors.
+                    {{ $setting->clients_partners_description }}
                 </p>
             </div>
             <div class="clientsslider wow fadeInUp" data-wow-delay=".6s">
-                <div class="clients-img">
-                    <img src="{{ asset('frontend/assets/img/aboutus-page/clientlogo/clientlogo1.png') }}" alt="client1">
-                </div>
-                <div class="clients-img">
-                    <img src="{{ asset('frontend/assets/img/aboutus-page/clientlogo/clientlogo2.png') }}" alt="client1">
-                </div>
-                <div class="clients-img">
-                    <img src="{{ asset('frontend/assets/img/aboutus-page/clientlogo/clientlogo3.png') }}" alt="client1">
-                </div>
-                <div class="clients-img">
-                    <img src="{{ asset('frontend/assets/img/aboutus-page/clientlogo/clientlogo4.png') }}" alt="client1">
-                </div>
-                <div class="clients-img">
-                    <img src="{{ asset('frontend/assets/img/aboutus-page/clientlogo/clientlogo5.png') }}" alt="client1">
-                </div>
-                <div class="clients-img">
-                    <img src="{{ asset('frontend/assets/img/aboutus-page/clientlogo/clientlogo6.png') }}" alt="client1">
-                </div>
-
+                @foreach ($ourClients as $ourClient)
+                    <div class="clients-img">
+                        <img src="{{ url(Storage::url($ourClient->image)) }}" alt="{{ $ourClient->title }}">
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

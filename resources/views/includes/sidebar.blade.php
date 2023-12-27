@@ -7,6 +7,40 @@
             </a>
         </li>
         <li>
+            <a href="javascript:;" class="side-menu {{ Route::is(['goals.*', 'our-clients.*']) ? 'side-menu--active side-menu--open' : '' }}">
+                <div class="side-menu__icon"> <i data-lucide="shield"></i> </div>
+                <div class="side-menu__title"> About Us <i data-lucide="chevron-down" class="side-menu__sub-icon "></i> </div>
+            </a>
+            <ul class="{{ Route::is(['goals.*', 'our-clients.*']) ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('goals.index') }}" class="side-menu {{ Route::is('goals.*') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon"> <i data-lucide="target"></i> </div>
+                        <div class="side-menu__title"> Goals </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('our-clients.index') }}" class="side-menu {{ Route::is('our-clients.*') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
+                        <div class="side-menu__title"> Our Clients </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="side-menu {{ Route::is(['enquiries.*']) ? 'side-menu--active side-menu--open' : '' }}">
+                <div class="side-menu__icon"> <i data-lucide="phone"></i> </div>
+                <div class="side-menu__title"> Contact Us <i data-lucide="chevron-down" class="side-menu__sub-icon "></i> </div>
+            </a>
+            <ul class="{{ Route::is(['enquiries.*']) ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('enquiries.index') }}" class="side-menu {{ Route::is('enquiries.*') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon"> <i data-lucide="mail"></i> </div>
+                        <div class="side-menu__title"> Enquiry </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
             <a href="{{ route('hero-sections.index') }}" class="side-menu {{ Route::is('hero-sections.*') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"> <i data-lucide="book"></i> </div>
                 <div class="side-menu__title"> Hero Sections </div>

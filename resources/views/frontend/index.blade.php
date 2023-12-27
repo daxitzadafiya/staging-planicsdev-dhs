@@ -52,7 +52,7 @@
                                 <a href="{{ $heroSection->button_url ?? 'javascript:void(0)' }}" target="{{ isset($heroSection->button_url) ? '_blank' : '_self' }}" class="btn wow fadeInUp" data-wow-delay=".7s">{{ $heroSection->button_text }}</a>
                             </div>
                         </div>
-                        <div class="col-lg-6 banner-content-row justify-content-start wow fadeInRight" data-wow-delay=".5s" data-title="" data-tilt-max="2" data-tilt-speed="1000" style="will-change: transform; transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
+                        <div class="col-lg-6 banner-content-row justify-content-start wow fadeInRight" data-wow-delay=".5s" data-tilt="" data-tilt-max="2" data-tilt-speed="1000" style="will-change: transform; transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
                             <div class="hero-img">
                                 <img src="{{ url(Storage::url($heroSection->image)) }}" alt="hero-img" data-tilt="" data-tilt-max="10" data-tilt-speed="1000" style="will-change: transform; transform: perspective(5000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);" />
                             </div>
