@@ -97,6 +97,24 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('key-features.index') }}" class="side-menu {{ Route::is('key-features.*') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"> <i data-lucide="zap"></i> </div>
+                <div class="side-menu__title"> Key Features </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('our-processes.index') }}" class="side-menu {{ Route::is('our-processes.*') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"> <i data-lucide="layers"></i> </div>
+                <div class="side-menu__title"> Our Processes </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('client-reviews.index') }}" class="side-menu {{ Route::is('client-reviews.*') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"> <i data-lucide="meh"></i> </div>
+                <div class="side-menu__title"> Client Reviews </div>
+            </a>
+        </li>
+        <li>
             <a href="{{ route('settings.index') }}" class="side-menu {{ Route::is('settings.index') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
                 <div class="side-menu__title"> Settings </div>

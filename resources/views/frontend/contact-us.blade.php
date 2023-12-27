@@ -63,33 +63,33 @@
                     <div class="contact-from">
                         <form method="post" action="{{ route('frontend.enquiries.store') }}">
                             @csrf
-                            <div class="col-12">
+                            <div class="col-12 mb-4">
                                 <input type="text" name="name" placeholder="Enter Full Name" class="form-control" />
                                 @error('name')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 mb-4">
                                     <input type="email" name="email" placeholder="Enter Email Address" class="form-control" />
                                     @error('email')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 mb-4">
                                     <input type="tel" name="contact" placeholder="Enter Contact" class="form-control" />
                                     @error('contact')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 mb-4">
                                 <input type="text" name="subject" placeholder="Enter Subject" class="form-control" />
                                 @error('subject')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 mb-4">
                                 <textarea placeholder="Enter Message" name="message" class="form-control" rows="3"></textarea>
                                 @error('message')
                                     <small class="text-danger">{{ $message }}</small>

@@ -16,64 +16,69 @@
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5 bg-white rounded-md shadow">
         <div class="intro-y col-span-12 p-5">
-            <ul class="nav nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center" role="tablist">
+            <ul class="nav nav-link-tabs flex-col sm:flex-row justify-center justify-between text-center" role="tablist">
                 <li id="header-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4 active" data-tw-target="#header" aria-controls="header" aria-selected="true" role="tab">
+                    <a href="javascript:;" class="nav-link py-4 px-1 active" data-tw-target="#header" aria-controls="header" aria-selected="true" role="tab">
                         Header
                     </a> 
                 </li>
                 <li id="about-us-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#about-us" aria-controls="about-us" aria-selected="false" role="tab">
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#about-us" aria-controls="about-us" aria-selected="false" role="tab">
                         About Us
                     </a> 
                 </li>
                 <li id="contact-us-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#contact-us" aria-controls="contact-us" aria-selected="false" role="tab">
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#contact-us" aria-controls="contact-us" aria-selected="false" role="tab">
                         Contact Us
                     </a> 
                 </li>
                 <li id="clients-partners-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#clients-partners" aria-controls="clients-partners" aria-selected="false" role="tab">
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#clients-partners" aria-controls="clients-partners" aria-selected="false" role="tab">
                         Clients & Partners
                     </a>
                 </li>
                 <li id="point-of-difference-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#point-of-difference" aria-controls="point-of-difference" aria-selected="false" role="tab">
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#point-of-difference" aria-controls="point-of-difference" aria-selected="false" role="tab">
                         Point Of Difference 
                     </a> 
                 </li>
                 <li id="service-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#service" aria-controls="service" aria-selected="false" role="tab">
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#service" aria-controls="service" aria-selected="false" role="tab">
                         Service
                     </a>
                 </li>
-                <li id="achievement-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#achievement" aria-controls="achievement" aria-selected="false" role="tab">
-                        Achievement
-                    </a>
-                </li>
-                <li id="core-value-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#core-value" aria-controls="core-value" aria-selected="false" role="tab">
-                        Core Value
-                    </a>
-                </li>
-                <li id="technology-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#technology" aria-controls="technology" aria-selected="false" role="tab">
-                        Technology
-                    </a>
-                </li>
                 <li id="portfolio-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#portfolio" aria-controls="portfolio" aria-selected="false" role="tab">
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#portfolio" aria-controls="portfolio" aria-selected="false" role="tab">
                         Portfolio
                     </a>
                 </li>
+                <li id="key-features-tab" class="nav-item" role="presentation"> 
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#key-features" aria-controls="key-features" aria-selected="false" role="tab">
+                        Key Features
+                    </a>
+                </li>
+                <li id="success_story-tab" class="nav-item" role="presentation"> 
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#success_story" aria-controls="success_story" aria-selected="false" role="tab">
+                        Success Stories
+                    </a>
+                </li>
+                <li id="our_process-tab" class="nav-item" role="presentation"> 
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#our_process" aria-controls="our_process" aria-selected="false" role="tab">
+                        Our Process
+                    </a>
+                </li>
+                <li id="client_says-tab" class="nav-item" role="presentation"> 
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#client_says" aria-controls="client_says" aria-selected="false" role="tab">
+                        Client Says
+                    </a>
+                </li>
                 <li id="contact-news-letter-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#contact-news-letter" aria-controls="contact-news-letter" aria-selected="false" role="tab">
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#contact-news-letter" aria-controls="contact-news-letter" aria-selected="false" role="tab">
                         Contact News Letter
                     </a>
                 </li>
                 <li id="footer-tab" class="nav-item" role="presentation"> 
-                    <a href="javascript:;" class="nav-link py-4" data-tw-target="#footer" aria-controls="footer" aria-selected="false" role="tab">
+                    <a href="javascript:;" class="nav-link py-4 px-1" data-tw-target="#footer" aria-controls="footer" aria-selected="false" role="tab">
                         Footer
                     </a>
                 </li>
@@ -236,44 +241,53 @@
                             <label for="services_description" class="form-label">Description</label>
                             <textarea name="services_description" id="services_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->services_description) ? $setting->services_description : old('services_description') }}</textarea>
                         </div>
-                    </div>
-                    <div id="achievement" class="tab-pane" role="tabpanel" aria-labelledby="achievement-tab">
-                        <div>
-                            <label for="achievement_title" class="form-label">Title</label>
-                            <input id="achievement_title" type="text" name="achievement_title" class="form-control w-full" value="{{ isset($setting->achievement_title) ? $setting->achievement_title : old('achievement_title') }}" placeholder="Please Enter Title">
-                        </div>
-                        <div class="mt-3">
-                            <label for="achievement_description" class="form-label">Description</label>
-                            <textarea name="achievement_description" id="achievement_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->achievement_description) ? $setting->achievement_description : old('achievement_description') }}</textarea>
-                        </div>
-                        <div class="mt-3">
-                            <label for="achievement_logo" class="form-label">Logo</label>
-                            <input id="achievement_logo" type="file" name="achievement_logo" class="form-control w-full">
-                        </div>
-                        @if(isset($setting->achievement_logo) && !empty($setting->achievement_logo))
-                            <div class="w-24 h-24 image-fit mt-3 cursor-pointer zoom-in">
-                                <img class="rounded-full" src="{{ url(Storage::url($setting->achievement_logo)) }}">
+                        <div class="mt-5">
+                            <div class="text-center font-semibold text-lg">
+                                <h1>Achivement</h1>
                             </div>
-                        @endif
-                    </div>
-                    <div id="core-value" class="tab-pane" role="tabpanel" aria-labelledby="core-value-tab">
-                        <div>
-                            <label for="core_values_title" class="form-label">Title</label>
-                            <input id="core_values_title" type="text" name="core_values_title" class="form-control w-full" value="{{ isset($setting->core_values_title) ? $setting->core_values_title : old('core_values_title') }}" placeholder="Please Enter Title">
+                            <div class="mt-3">
+                                <label for="achievement_title" class="form-label">Title</label>
+                                <input id="achievement_title" type="text" name="achievement_title" class="form-control w-full" value="{{ isset($setting->achievement_title) ? $setting->achievement_title : old('achievement_title') }}" placeholder="Please Enter Title">
+                            </div>
+                            <div class="mt-3">
+                                <label for="achievement_description" class="form-label">Description</label>
+                                <textarea name="achievement_description" id="achievement_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->achievement_description) ? $setting->achievement_description : old('achievement_description') }}</textarea>
+                            </div>
+                            <div class="mt-3">
+                                <label for="achievement_logo" class="form-label">Logo</label>
+                                <input id="achievement_logo" type="file" name="achievement_logo" class="form-control w-full">
+                            </div>
+                            @if(isset($setting->achievement_logo) && !empty($setting->achievement_logo))
+                                <div class="w-24 h-24 image-fit mt-3 cursor-pointer zoom-in">
+                                    <img class="rounded-full" src="{{ url(Storage::url($setting->achievement_logo)) }}">
+                                </div>
+                            @endif
                         </div>
-                        <div class="mt-3">
-                            <label for="core_values_description" class="form-label">Description</label>
-                            <textarea name="core_values_description" id="core_values_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->core_values_description) ? $setting->core_values_description : old('core_values_description') }}</textarea>
+                        <div class="mt-5">
+                            <div class="text-center font-semibold text-lg">
+                                <h1>Core Value</h1>
+                            </div>
+                            <div class="mt-3">
+                                <label for="core_values_title" class="form-label">Title</label>
+                                <input id="core_values_title" type="text" name="core_values_title" class="form-control w-full" value="{{ isset($setting->core_values_title) ? $setting->core_values_title : old('core_values_title') }}" placeholder="Please Enter Title">
+                            </div>
+                            <div class="mt-3">
+                                <label for="core_values_description" class="form-label">Description</label>
+                                <textarea name="core_values_description" id="core_values_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->core_values_description) ? $setting->core_values_description : old('core_values_description') }}</textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div id="technology" class="tab-pane" role="tabpanel" aria-labelledby="technology-tab">
-                        <div>
-                            <label for="technologies_title" class="form-label">Title</label>
-                            <input id="technologies_title" type="text" name="technologies_title" class="form-control w-full" value="{{ isset($setting->technologies_title) ? $setting->technologies_title : old('technologies_title') }}" placeholder="Please Enter Title">
-                        </div>
-                        <div class="mt-3">
-                            <label for="technologies_description" class="form-label">Description</label>
-                            <textarea name="technologies_description" id="technologies_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->technologies_description) ? $setting->technologies_description : old('technologies_description') }}</textarea>
+                        <div class="mt-5">
+                            <div class="text-center font-semibold text-lg">
+                                <h1>Technology</h1>
+                            </div>
+                            <div class="mt-3">
+                                <label for="technologies_title" class="form-label">Title</label>
+                                <input id="technologies_title" type="text" name="technologies_title" class="form-control w-full" value="{{ isset($setting->technologies_title) ? $setting->technologies_title : old('technologies_title') }}" placeholder="Please Enter Title">
+                            </div>
+                            <div class="mt-3">
+                                <label for="technologies_description" class="form-label">Description</label>
+                                <textarea name="technologies_description" id="technologies_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->technologies_description) ? $setting->technologies_description : old('technologies_description') }}</textarea>
+                            </div>
                         </div>
                     </div>
                     <div id="portfolio" class="tab-pane" role="tabpanel" aria-labelledby="portfolio-tab">
@@ -285,6 +299,72 @@
                             <label for="portfolio_description" class="form-label">Description</label>
                             <textarea name="portfolio_description" id="portfolio_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->portfolio_description) ? $setting->portfolio_description : old('portfolio_description') }}</textarea>
                         </div>
+                    </div>
+                    <div id="key-features" class="tab-pane" role="tabpanel" aria-labelledby="key-features-tab">
+                        <div>
+                            <label for="key_features_title" class="form-label">Title</label>
+                            <input id="key_features_title" type="text" name="key_features_title" class="form-control w-full" value="{{ isset($setting->key_features_title) ? $setting->key_features_title : old('key_features_title') }}" placeholder="Please Enter Title">
+                        </div>
+                        <div class="mt-3">
+                            <label for="key_features_description" class="form-label">Description</label>
+                            <textarea name="key_features_description" id="key_features_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->key_features_description) ? $setting->key_features_description : old('key_features_description') }}</textarea>
+                        </div>
+                    </div>
+                    <div id="success_story" class="tab-pane" role="tabpanel" aria-labelledby="success_story-tab">
+                        <div>
+                            <label for="success_story_title" class="form-label">Title</label>
+                            <input id="success_story_title" type="text" name="success_story_title" class="form-control w-full" value="{{ isset($setting->success_story_title) ? $setting->success_story_title : old('success_story_title') }}" placeholder="Please Enter Title">
+                        </div>
+                        <div class="mt-3">
+                            <label for="success_story_description" class="form-label">Description</label>
+                            <textarea name="success_story_description" id="success_story_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->success_story_description) ? $setting->success_story_description : old('success_story_description') }}</textarea>
+                        </div>
+                        <div class="mt-3">
+                            <label for="success_story_sub_title" class="form-label">Sub Title</label>
+                            <input id="success_story_sub_title" type="text" name="success_story_sub_title" class="form-control w-full" value="{{ isset($setting->success_story_sub_title) ? $setting->success_story_sub_title : old('success_story_sub_title') }}" placeholder="Please Enter Title">
+                        </div>
+                        <div class="mt-3">
+                            <label for="success_story_sub_description" class="form-label">Sub Description</label>
+                            <textarea name="success_story_sub_description" id="success_story_sub_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->success_story_sub_description) ? $setting->success_story_sub_description : old('success_story_sub_description') }}</textarea>
+                        </div>
+                        <div class="mt-3">
+                            <label for="success_story_logo" class="form-label">Logo</label>
+                            <input id="success_story_logo" type="file" name="success_story_logo" class="form-control w-full">
+                        </div>
+                        @if(isset($setting->success_story_logo) && !empty($setting->success_story_logo))
+                            <div class="w-24 h-24 image-fit mt-3 cursor-pointer zoom-in">
+                                <img class="rounded-full" src="{{ url(Storage::url($setting->success_story_logo)) }}">
+                            </div>
+                        @endif
+                    </div>
+                    <div id="our_process" class="tab-pane" role="tabpanel" aria-labelledby="our_process-tab">
+                        <div>
+                            <label for="our_process_title" class="form-label">Title</label>
+                            <input id="our_process_title" type="text" name="our_process_title" class="form-control w-full" value="{{ isset($setting->our_process_title) ? $setting->our_process_title : old('our_process_title') }}" placeholder="Please Enter Title">
+                        </div>
+                        <div class="mt-3">
+                            <label for="our_process_description" class="form-label">Description</label>
+                            <textarea name="our_process_description" id="our_process_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->our_process_description) ? $setting->our_process_description : old('our_process_description') }}</textarea>
+                        </div>
+                    </div>
+                    <div id="client_says" class="tab-pane" role="tabpanel" aria-labelledby="client_says-tab">
+                        <div>
+                            <label for="client_says_title" class="form-label">Title</label>
+                            <input id="client_says_title" type="text" name="client_says_title" class="form-control w-full" value="{{ isset($setting->client_says_title) ? $setting->client_says_title : old('client_says_title') }}" placeholder="Please Enter Title">
+                        </div>
+                        <div class="mt-3">
+                            <label for="client_says_description" class="form-label">Description</label>
+                            <textarea name="client_says_description" id="client_says_description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($setting->client_says_description) ? $setting->client_says_description : old('client_says_description') }}</textarea>
+                        </div>
+                        <div class="mt-3">
+                            <label for="client_says_logo" class="form-label">Logo</label>
+                            <input id="client_says_logo" type="file" name="client_says_logo" class="form-control w-full">
+                        </div>
+                        @if(isset($setting->client_says_logo) && !empty($setting->client_says_logo))
+                            <div class="w-24 h-24 image-fit mt-3 cursor-pointer zoom-in">
+                                <img class="rounded-full" src="{{ url(Storage::url($setting->client_says_logo)) }}">
+                            </div>
+                        @endif
                     </div>
                     <div id="contact-news-letter" class="tab-pane" role="tabpanel" aria-labelledby="contact-news-letter-tab">
                         <div>

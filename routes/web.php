@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientReviewController;
 use App\Http\Controllers\CoreValueController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\HeroSectionController;
+use App\Http\Controllers\KeyFeatureController;
 use App\Http\Controllers\OurClientController;
+use App\Http\Controllers\OurProcessController;
 use App\Http\Controllers\PointOfDifferenceController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ServiceCategoryController;
@@ -63,6 +66,9 @@ Route::middleware('auth')->prefix('admin')->group(function() {
     Route::resource('goals', GoalController::class);
     Route::resource('our-clients', OurClientController::class);
     Route::resource('portfolios', PortfolioController::class);
+    Route::resource('key-features', KeyFeatureController::class);
+    Route::resource('our-processes', OurProcessController::class);
+    Route::resource('client-reviews', ClientReviewController::class);
 
     Route::get('enquiries', [FrontEndController::class, 'enquiriesList'])->name('enquiries.index');
     Route::delete('enquiries/{enquiry}', [FrontEndController::class, 'destroy'])->name('enquiries.destroy');

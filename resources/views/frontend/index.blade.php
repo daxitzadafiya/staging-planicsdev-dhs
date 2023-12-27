@@ -268,63 +268,25 @@
         <section class="process-wrapper pt-0 padding">
             <div class="container">
                 <div class="section-title">
-                    <h2 class="wow fadeInUp" data-wow-delay=".4s">Our Key Features</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay=".4s">{{ $setting->key_features_title }}</h2>
                     <p class="wow fadeInUp" data-wow-delay=".5s">
-                        Discover the distinctive qualities that make us stand out from the competition. Experience our
-                        expert team, tailored
-                        solutions, and commitment to innovation, delivering exceptional results for your business
+                        {{ $setting->key_features_description }}
                     </p>
                 </div>
                 <div class="row wow fadeInUp" data-wow-delay=".5s">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="process-box">
-                            <div class="process-img">
-                                <img src="{{ asset('frontend/assets/img/process1.png') }}" alt="Discover-img">
+                    @foreach ($key_features as $key_feature)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="process-box {{ $loop->last ? 'process-box-last' : '' }}">
+                                <div class="process-img">
+                                    <img src="{{ url(Storage::url($key_feature->image)) }}" alt="{{ $key_feature->title }}">
+                                </div>
+                                <h2>{{ $key_feature->title }}</h2>
+                                <p>
+                                    {{ $key_feature->description }}
+                                </p>
                             </div>
-                            <h2>Expert Team</h2>
-                            <p>Emphasize the qualifications and expertise of your team members. Highlight their
-                                experience, certifications, and areas
-                                of specialization to showcase the depth of knowledge and skill available to clients.</p>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="process-box">
-                            <div class="process-img">
-                                <img src="{{ asset('frontend/assets/img/process2.png') }}" alt="Discover-img">
-                            </div>
-                            <h2>Innovation and Creativity</h2>
-                            <p>Communicate your commitment to innovation and creativity in your solutions. Highlight how
-                                you stay updated with the
-                                latest industry trends, emerging technologies, and design practices to offer
-                                cutting-edge and forward-thinking
-                                solutions.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="process-box">
-                            <div class="process-img">
-                                <img src="{{ asset('frontend/assets/img/process3.png') }}" alt="Discover-img">
-                            </div>
-                            <h2>Client Satisfaction</h2>
-                            <p>Highlight your focus on client satisfaction and success. Showcase testimonials or case
-                                studies that demonstrate how your
-                                solutions have positively impacted your clients' businesses and helped them achieve
-                                their goals.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="process-box process-box-last">
-                            <div class="process-img">
-                                <img src="{{ asset('frontend/assets/img/process4.png') }}" alt="Discover-img">
-                            </div>
-                            <h2>Long-Term Support</h2>
-                            <p>Communicate your commitment to providing ongoing support and maintenance to clients even
-                                after the project is completed.
-                                Mention your post-launch support services and the availability of service-level
-                                agreements (SLAs) to ensure long-term
-                                client satisfaction.</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="process-bg">
@@ -337,11 +299,9 @@
         <section class="padding achievement-wrapper">
             <div class="container">
                 <div class="section-title">
-                    <h2 class="wow fadeInUp" data-wow-delay=".4s">Our Success Stories</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay=".4s">{{ $setting->success_story_title }}</h2>
                     <p class="wow fadeInUp" data-wow-delay=".5s">
-                        Witness the power of our solutions through real-world success stories. Explore how we've helped
-                        businesses thrive and
-                        envision your own path to remarkable growth.
+                        {{ $setting->success_story_description }}
                     </p>
                 </div>
                 <div class="row align-items-center">
@@ -352,7 +312,7 @@
                                 <div class="achievement-circle1">
                                     <div class="achievement-circle2">
                                         <div class="achievement-circle3">
-                                            <img src="{{ asset('frontend/assets/img/achievement-logo.png') }}" alt="">
+                                            <img src="{{ url(Storage::url($setting->success_story_logo)) }}" alt="{{ env('APP_NAME') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -361,18 +321,10 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="achievement-description">
-                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Transforming Businesses with Excellence</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".5s">we take pride in the success
-                                stories we've created in partnership with our clients. Explore a
-                                selection of projects where we have achieved remarkable results, driving business growth
-                                and surpassing expectations.
-                                Witness the transformative power of our solutions and envision the possibilities for
-                                your own success.</p>
-                            <p class="mb-5 wow fadeInUp" data-wow-delay=".6s">Discover how our expertise and innovative
-                                solutions have propelled businesses to new heights. Dive into our success
-                                stories and envision the potential for your own remarkable transformation. Partner with
-                                us to unlock your business's
-                                full potential and join the ranks of our satisfied clients.</p>
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">{{ $setting->success_story_sub_title }}</h2>
+                            <p class="wow fadeInUp mb-5" data-wow-delay=".5s">
+                                {{ $setting->success_story_sub_description }}
+                            </p>
                             <div class="row">
                                 <div class="col-lg-4 col-md-6">
                                     <div class="counter-box wow fadeInUp" data-wow-delay=".4s">
@@ -434,202 +386,50 @@
         <section class="padding key-features-wrapper">
             <div class="container">
                 <div class="section-title">
-                    <h2 class="wow fadeInUp" data-wow-delay=".4s">Our Process</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay=".4s">{{ $setting->our_process_title }}</h2>
                     <p class="wow fadeInUp" data-wow-delay=".5s">
-                        Discover the distinctive qualities that make us stand out from the competition. Experience our
-                        expert team, tailored solutions, and commitment to innovation, delivering exceptional results
-                        for your business
+                        {{ $setting->our_process_description }}
                     </p>
                 </div>
                 <div class="wow fadeInUp" data-wow-delay=".6s">
+                    @foreach ($our_processes as $index => $our_process)
                     <div class="key-features-box">
                         <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="features-text text-lg-end">
-                                    <h2>Discovery and Requirement Gathering</h2>
-                                    <p>Describe how you kickstart each project by thoroughly understanding the client's
-                                        needs, goals, and target audience.
-                                        Explain how you conduct research and gather requirements to ensure a
-                                        comprehensive understanding of the project scope.</p>
+                                @if($index % 2 != 0)
+                                    <div class="col-lg-5">
+                                        <div class="label-text label-text-right">
+                                            <h2 class="text-lg-end">{{ "0".$index + 1 }}</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <div class="features-img">
+                                            <img src="{{ url(Storage::url($our_process->image)) }}" alt="{{ env('APP_NAME') }}">
+                                        </div>
+                                    </div>
+                                @endif
+                                <div class="col-lg-5">
+                                    <div class="features-text text-lg-end">
+                                        <h2>{{ $our_process->title }}</h2>
+                                        <p>
+                                            {{ $our_process->description }}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="features-img">
-                                    <img src="{{ asset('frontend/assets/img/key-features/key1.png') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="label-text">
-                                    <h2 class=" text-lg-start">01</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="key-features-box">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="label-text label-text-right">
-                                    <h2 class="text-lg-end">02</h2>
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="features-img">
-                                    <img src="{{ asset('frontend/assets/img/key-features/key2.png') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="features-text festures-text-right text-lg-start">
-                                    <h2>Planning and Strategy</h2>
-                                    <p>Outline your process of creating a tailored plan and strategy for each project.
-                                        This includes defining project
-                                        milestones, timelines, resource allocation, and identifying the most effective
-                                        technologies and methodologies to be
-                                        employed.</p>
-                                </div>
+                                @if($index % 2 == 0)
+                                    <div class="col-lg-1">
+                                        <div class="features-img">
+                                            <img src="{{ url(Storage::url($our_process->image)) }}" alt="{{ env('APP_NAME') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="label-text">
+                                            <h2 class="text-lg-start">{{ "0".$index + 1 }}</h2>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="key-features-box">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="features-text text-lg-end">
-                                    <h2>Design and Prototyping</h2>
-                                    <p>Discuss your approach to crafting visually appealing and user-centric designs.
-                                        Explain how you create wireframes,
-                                        mockups, and prototypes to provide clients with a clear visualization of the
-                                        final product and allow for feedback and
-                                        iterations.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="features-img">
-                                    <img src="{{ asset('frontend/assets/img/key-features/key3.png') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="label-text">
-                                    <h2 class=" text-lg-start">03</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="key-features-box">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="label-text label-text-right">
-                                    <h2 class="text-lg-end">04</h2>
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="features-img">
-                                    <img src="{{ asset('frontend/assets/img/key-features/key4.png') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="features-text festures-text-right text-lg-start">
-                                    <h2>Development and Implementation</h2>
-                                    <p>Highlight your development process, including coding, integration of
-                                        functionalities, and rigorous testing. Emphasize
-                                        your commitment to using industry best practices and adhering to coding
-                                        standards to ensure scalability, performance,
-                                        and security.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="key-features-box">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="features-text text-lg-end">
-                                    <h2>Iteration and Feedback</h2>
-                                    <p>Describe how you encourage client involvement throughout the project, providing
-                                        regular updates and seeking their
-                                        feedback. Explain how you incorporate client input, conduct testing, and make
-                                        necessary iterations to ensure the project
-                                        meets their expectations.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="features-img">
-                                    <img src="{{ asset('frontend/assets/img/key-features/key5.png') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="label-text">
-                                    <h2 class=" text-lg-start">05</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="key-features-box">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="label-text label-text-right">
-                                    <h2 class="text-end">06</h2>
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="features-img features-img-last">
-                                    <img src="{{ asset('frontend/assets/img/key-features/key6.png') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="features-text festures-text-right text-start">
-                                    <h2>Quality Assurance and Testing</h2>
-                                    <p>Discuss your rigorous quality assurance processes, including comprehensive
-                                        testing to identify and resolve any bugs or
-                                        issues. Highlight your dedication to delivering a seamless and error-free end
-                                        product.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="key-features-box">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="features-text text-lg-end">
-                                    <h2>Deployment and Launch</h2>
-                                    <p>Explain how you support clients during the final deployment and launch phase.
-                                        Discuss your meticulous attention to
-                                        detail to ensure a smooth transition from development to the live environment.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="features-img">
-                                    <img src="{{ asset('frontend/assets/img/key-features/key1.png') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="label-text">
-                                    <h2 class=" text-lg-start">07</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="key-features-box">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="label-text label-text-right">
-                                    <h2 class="text-lg-end">08</h2>
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="features-img">
-                                    <img src="{{ asset('frontend/assets/img/key-features/key2.png') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="features-text festures-text-right text-lg-start">
-                                    <h2>Post-Launch Support and Maintenance</h2>
-                                    <p>Communicate your commitment to providing ongoing support and maintenance after
-                                        the project is launched. Describe your
-                                        service level agreements (SLAs) and how you address any post-launch issues or
-                                        additional feature requests.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -639,11 +439,9 @@
         <section class="testimoniols-wrapper padding pt-0">
             <div class="container">
                 <div class="section-title">
-                    <h2 class="wow fadeInUp" data-wow-delay=".4s">Our Client Says</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay=".4s">{{ $setting->client_says_title }}</h2>
                     <p class="wow fadeInUp" data-wow-delay=".5s">
-                        Discover firsthand accounts of our clients' experiences. See how our solutions have transformed
-                        their businesses, and
-                        join them in their success.
+                        {{ $setting->client_says_description }}
                     </p>
                 </div>
                 <div class="position-relative test-block wow fadeInUp" data-wow-delay=".6s">
@@ -664,188 +462,47 @@
                                         <div class="testimoniols-circle-main9"></div>
                                     </div>
 
-                                    <div class="testimoniols-item testimoniols-item1 tab_links active"
-                                        onclick="openCity(event, 'test1')">
-                                        <img src="{{ asset('frontend/assets/img/testmoniols/testimg1.png') }}" alt="" class="test-img">
-                                    </div>
-                                    <div class="testimoniols-item testimoniols-item2 tab_links"
-                                        onclick="openCity(event, 'test2')">
-                                        <img src="{{ asset('frontend/assets/img/testmoniols/testimg2.png') }}" alt="" class="test-img">
-                                    </div>
-                                    <div class="testimoniols-item testimoniols-item3 tab_links"
-                                        onclick="openCity(event, 'test3')">
-                                        <img src="{{ asset('frontend/assets/img/testmoniols/testimg3.png') }}" alt="" class="test-img">
-                                    </div>
-                                    <div class="testimoniols-item testimoniols-item4 tab_links"
-                                        onclick="openCity(event, 'test4')">
-                                        <img src="{{ asset('frontend/assets/img/testmoniols/testimg4.png') }}" alt="" class="test-img">
-                                    </div>
-                                    <div class="testimoniols-item testimoniols-item5 tab_links"
-                                        onclick="openCity(event, 'test5')">
-                                        <img src="{{ asset('frontend/assets/img/testmoniols/testimg5.png') }}" alt="" class="test-img">
-                                    </div>
-                                    <div class="testimoniols-item testimoniols-item6 tab_links"
-                                        onclick="openCity(event, 'test6')">
-                                        <img src="{{ asset('frontend/assets/img/testmoniols/testimg6.png') }}" alt="" class="test-img">
-                                    </div>
+                                    @foreach ($client_reviews as $index => $client_review)
+                                        <div class="testimoniols-item testimoniols-item{{ $index + 1 }} tab_links {{ $loop->first ? 'active' : '' }}"
+                                            onclick="openCity(event, '{{ 'test'.$index + 1 }}')">
+                                            <img src="{{ url(Storage::url($client_review->image)) }}" alt="{{ env('APP_NAME') }}" class="test-img">
+                                        </div>
+                                    @endforeach
                                     <div class="testimonial-circle-img">
-                                        <img src="{{ asset('frontend/assets/img/test-logo.png') }}" alt="">
+                                        <img src="{{ url(Storage::url($setting->client_says_logo)) }}" alt="{{ env('APP_NAME') }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="testimoniols-content-item">
-
-                                    <div id="test1" class="tab_content">
-                                        <div class="testimoniols-text">
-                                            <div class="testimoniols-content-img">
-                                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                                            </div>
-                                            <p class="paragraph"> Daxit is very good freelancer. I am very much
-                                                satisfied with his works. Good professionalism in his work and attitude.
-                                                He is always on time and delivering works on time, good communication
-                                                also.</p>
-                                            <div class="test-flex">
-                                                <div class="test-img">
-                                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg1.png') }}" alt="">
+                                    @foreach ($client_reviews as $index => $client_review)
+                                        <div id="test{{ $index + 1 }}" class="tab_content">
+                                            <div class="testimoniols-text">
+                                                <div class="testimoniols-content-img">
+                                                    <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
                                                 </div>
-                                                <div class="testimoniols-content">
-                                                    <h2>Tony Verghase</h2>
-                                                    <p>5.0 <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="test2" class="tab_content">
-                                        <div class="testimoniols-text">
-                                            <div class="testimoniols-content-img">
-                                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                                            </div>
-                                            <p class="paragraph"> Daxit was a great asset to my project - a proficient
-                                                developer who I would have no problem recommending (and have done)
-                                                to other people.
-                                                Thank you for your hardwork Daxit and I sincerely hope we can work
-                                                together again in the future.</p>
-                                            <div class="test-flex">
-                                                <div class="test-img">
-                                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg2.png') }}" alt="">
-                                                </div>
-                                                <div class="testimoniols-content">
-                                                    <h2>Lee Jonson</h2>
-                                                    <p>4.0 <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <!-- <i class="fa-solid fa-star"></i> -->
-                                                    </p>
+                                                <p class="paragraph"> 
+                                                    {{ $client_review->review }}
+                                                </p>
+                                                <div class="test-flex">
+                                                    <div class="test-img">
+                                                        <img src="{{ url(Storage::url($client_review->image)) }}" alt="{{ env('APP_NAME') }}">
+                                                    </div>
+                                                    <div class="testimoniols-content">
+                                                        <h2>{{ $client_review->name }}</h2>
+                                                        <p> 
+                                                            {{ $client_review->rating }}
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div id="test3" class="tab_content">
-                                        <div class="testimoniols-text">
-                                            <div class="testimoniols-content-img">
-                                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                                            </div>
-                                            <p class="paragraph"> Great working with Daxit and will work with him again.
-                                            </p>
-                                            <div class="test-flex">
-                                                <div class="test-img">
-                                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg3.png') }}" alt="">
-                                                </div>
-                                                <div class="testimoniols-content">
-                                                    <h2>Jon skinner</h2>
-                                                    <p>4.3 <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star-half"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="test4" class="tab_content">
-                                        <div class="testimoniols-text">
-                                            <div class="testimoniols-content-img">
-                                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                                            </div>
-                                            <p class="paragraph"> Tanahair is the friendliest and most efficient company
-                                                I have ever used.
-                                                The whole thing takes time to introduce the product and as a result puts
-                                                forward only the best opportunities that really suit you. they help from
-                                                start to finish to create a great product identity for your company.</p>
-                                            <div class="test-flex">
-                                                <div class="test-img">
-                                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg4.png') }}" alt="">
-                                                </div>
-                                                <div class="testimoniols-content">
-                                                    <h2>Kinjal Patel</h2>
-                                                    <p>4.3 <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star-half"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="test5" class="tab_content">
-                                        <div class="testimoniols-text">
-                                            <div class="testimoniols-content-img">
-                                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                                            </div>
-                                            <p class="paragraph"> Impressed with the professional quality of the
-                                                delivered Full Stack Web application in a few weeks. Daxi was mindful of
-                                                the tight deadline for this project and led the development by providing
-                                                prompt and helpful communication, actively
-                                                delivering results, and implementing feedback. Always a pleasure working
-                                                with Ishan!</p>
-                                            <div class="test-flex">
-                                                <div class="test-img">
-                                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg5.png') }}" alt="">
-                                                </div>
-                                                <div class="testimoniols-content">
-                                                    <h2>Sebastiaan Wessels</h2>
-                                                    <p>4.3 <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star-half"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="test6" class="tab_content">
-                                        <div class="testimoniols-text">
-                                            <div class="testimoniols-content-img">
-                                                <img src="{{ asset('frontend/assets/img/testmoniols/quote.png') }}" alt="">
-                                            </div>
-                                            <p class="paragraph"> Amazing person to work with. Great in-depth knowledge
-                                                of Laravel and open to ideas. Good communication skills as well.</p>
-                                            <div class="test-flex">
-                                                <div class="test-img">
-                                                    <img src="{{ asset('frontend/assets/img/testmoniols/testimg6.png') }}" alt="">
-                                                </div>
-                                                <div class="testimoniols-content">
-                                                    <h2>Don Sony</h2>
-                                                    <p>4.3 <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star-half"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

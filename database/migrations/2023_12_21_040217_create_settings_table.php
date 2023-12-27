@@ -37,6 +37,18 @@ return new class extends Migration
             $table->longText('technologies_description')->nullable();
             $table->string('portfolio_title')->nullable();
             $table->longText('portfolio_description')->nullable();
+            $table->string('key_features_title')->nullable();
+            $table->longText('key_features_description')->nullable();
+            $table->string('success_story_title')->nullable();
+            $table->longText('success_story_description')->nullable();
+            $table->string('success_story_sub_title')->nullable();
+            $table->longText('success_story_sub_description')->nullable();
+            $table->string('success_story_logo')->nullable();
+            $table->string('our_process_title')->nullable();
+            $table->longText('our_process_description')->nullable();
+            $table->string('client_says_title')->nullable();
+            $table->longText('client_says_description')->nullable();
+            $table->string('client_says_logo')->nullable();
             $table->string('achievement_title')->nullable();
             $table->longText('achievement_description')->nullable();
             $table->string('achievement_logo')->nullable();

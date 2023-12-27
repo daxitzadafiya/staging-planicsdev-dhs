@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Mail\EnquiryMail;
 use App\Models\Achievement;
+use App\Models\ClientReview;
 use App\Models\Enquiry;
 use App\Models\Goal;
 use App\Models\HeroSection;
+use App\Models\KeyFeature;
 use App\Models\OurClient;
+use App\Models\OurProcess;
 use App\Models\PointOfDifference;
 use App\Models\Portfolio;
 use App\Models\Service;
@@ -38,8 +41,11 @@ class FrontEndController extends Controller
         $pointOfDifferences = PointOfDifference::where('is_active', 1)->get();
         $services = Service::where('is_active', 1)->with('service_categories')->get();
         $portfolios = Portfolio::with('service')->latest()->limit(3)->get();
+        $key_features = KeyFeature::where('is_active', 1)->get();
+        $our_processes = OurProcess::where('is_active', 1)->get();
+        $client_reviews = ClientReview::where('is_active', 1)->get();
 
-        return view('frontend.index', compact('heroSections', 'setting', 'pointOfDifferences', 'services', 'portfolios'));
+        return view('frontend.index', compact('heroSections', 'setting', 'pointOfDifferences', 'services', 'portfolios', 'key_features', 'our_processes', 'client_reviews'));
     }
 
     public function about()
@@ -119,7 +125,7 @@ class FrontEndController extends Controller
 
         $data = $request->except('_token');
 
-        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new EnquiryMail($data));
+        // Mail::to(env('MAIL_FROM_ADDRESS'))->send(new EnquiryMail($data));
 
         Enquiry::create($data);
 
