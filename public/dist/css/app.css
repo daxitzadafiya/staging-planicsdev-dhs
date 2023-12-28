@@ -4246,6 +4246,15 @@ select{
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
 }
+.header-logo {
+  background-color: white;
+  padding: 6px 25px;
+  border-radius: 7px;
+  width: 310px;
+  position: absolute;
+  top: -21px;
+  left: 3px;
+}
 .duration-300{
     transition-duration: 300ms;
 }
@@ -4266,7 +4275,8 @@ select{
    */
 /* Default colors */
 :root {
-    --color-primary: 22 78 99;
+    /* --color-primary: 22 78 99; */
+    --color-primary: 162 85 195;
     --color-secondary: 226 232 240;
     --color-success: 13 148 136;
     --color-info: 6 182 212;
