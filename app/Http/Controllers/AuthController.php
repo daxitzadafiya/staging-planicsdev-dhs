@@ -9,11 +9,16 @@ use App\Http\Request\RegisterRequest;
 use App\Http\Request\ResetPasswordRequest;
 use App\Mail\ResetPassword;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
@@ -23,7 +28,7 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function loginView()
+    public function loginView(): View
     {
         return view('auth.login');
     }
@@ -34,7 +39,7 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): JsonResponse
     {
         if (!Auth::attempt([
             'email' => $request->email,
@@ -42,16 +47,16 @@ class AuthController extends Controller
         ])) {
             throw new \Exception('Wrong email or password.');
         } else {
-            return response()->json(['success' => true, 'message' => "Login successful"]);
+            return Response::json(['success' => true, 'message' => "Login successful"]);
         }
     }
 
-    public function registerView()
+    public function registerView(): View
     {
         return view('auth.register');
     }
 
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request): JsonResponse
     {
         $data = $request->validated();
 
@@ -62,15 +67,15 @@ class AuthController extends Controller
        $user = User::create($data);
        $user->assignRole('USER');
 
-        return response()->json(['success' => true, 'message' => 'register successful']);
+        return Response::json(['success' => true, 'message' => 'register successful']);
     }
 
-    public function forgotPasswordView()
+    public function forgotPasswordView(): View
     {
         return view('auth.forgot-password');
     }
 
-    public function forgotPassword(ForgotPasswordRequest $request)
+    public function forgotPassword(ForgotPasswordRequest $request): JsonResponse
     {
         $data = $request->validated();
 
@@ -89,11 +94,11 @@ class AuthController extends Controller
             $data['name'] = $user->name;
             Mail::to($data['email'])->send(new ResetPassword($data));
 
-            return response()->json(['success' => true, 'message' => 'Mail has been sent successfully. Please check your mail']);
+            return Response::json(['success' => true, 'message' => 'Mail has been sent successfully. Please check your mail']);
         }
     }
 
-    public function resetPasswordView(Request $request, $email, $token)
+    public function resetPasswordView(Request $request, $email, $token): View
     {
         if(DB::table('password_resets')->whereToken($token)->exists()){
             return view('auth.reset-password', [
@@ -105,7 +110,7 @@ class AuthController extends Controller
         }
     }
 
-    public function resetPassword(ResetPasswordRequest $request)
+    public function resetPassword(ResetPasswordRequest $request): JsonResponse
     {
         $data = $request->validated();
 
@@ -120,7 +125,7 @@ class AuthController extends Controller
 
         DB::table('password_resets')->whereEmail($email)->delete();
 
-        return response()->json(['success' => true, 'message' => 'Password updated successfully']);
+        return Response::json(['success' => true, 'message' => 'Password updated successfully']);
     }
 
     /**
@@ -129,9 +134,10 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Auth::logout();
-        return redirect()->route('login');
+
+        return Redirect::route('login');
     }
 }
