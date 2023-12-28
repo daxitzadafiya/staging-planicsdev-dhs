@@ -7,6 +7,9 @@ use App\Http\Request\TechnologyUpdateRequest;
 use App\Models\Service;
 use App\Models\Technology;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class TechnologyController extends Controller
 {
@@ -15,7 +18,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $technologies = Technology::paginate();
 
@@ -27,7 +30,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         $services = Service::all();
 
@@ -40,7 +43,7 @@ class TechnologyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TechnologyStoreRequest $request)
+    public function store(TechnologyStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -52,7 +55,7 @@ class TechnologyController extends Controller
 
         Technology::create($data);
 
-        return redirect()->route('technologies.index');
+        return Redirect::route('technologies.index');
     }
 
     /**
@@ -61,7 +64,7 @@ class TechnologyController extends Controller
      * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function edit(Technology $technology)
+    public function edit(Technology $technology): View
     {
         $services = Service::all();
 
@@ -75,7 +78,7 @@ class TechnologyController extends Controller
      * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function update(TechnologyUpdateRequest $request, Technology $technology)
+    public function update(TechnologyUpdateRequest $request, Technology $technology): RedirectResponse
     {
         $data = $request->validated();
 
@@ -91,7 +94,7 @@ class TechnologyController extends Controller
 
         $technology->update($data);
 
-        return redirect()->route('technologies.index');
+        return Redirect::route('technologies.index');
     }
 
     /**
@@ -100,10 +103,10 @@ class TechnologyController extends Controller
      * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Technology $technology)
+    public function destroy(Technology $technology): RedirectResponse
     {
         $technology->delete();
 
-        return redirect()->route('technologies.index');
+        return Redirect::route('technologies.index');
     }
 }

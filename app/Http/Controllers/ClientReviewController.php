@@ -6,6 +6,9 @@ use App\Http\Request\ClientReviewStoreRequest;
 use App\Http\Request\ClientReviewUpdateRequest;
 use App\Models\ClientReview;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ClientReviewController extends Controller
 {
@@ -14,7 +17,7 @@ class ClientReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $clientReviews = ClientReview::paginate();
 
@@ -26,7 +29,7 @@ class ClientReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('pages.client-reviews.create');
     }
@@ -37,7 +40,7 @@ class ClientReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ClientReviewStoreRequest $request)
+    public function store(ClientReviewStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -49,7 +52,7 @@ class ClientReviewController extends Controller
 
         ClientReview::create($data);
 
-        return redirect()->route('client-reviews.index');
+        return Redirect::route('client-reviews.index');
     }
 
     /**
@@ -58,7 +61,7 @@ class ClientReviewController extends Controller
      * @param  \App\Models\ClientReview  $clientReview
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClientReview $clientReview)
+    public function edit(ClientReview $clientReview): View
     {
         return view('pages.client-reviews.create', compact('clientReview'));
     }
@@ -70,7 +73,7 @@ class ClientReviewController extends Controller
      * @param  \App\Models\ClientReview  $clientReview
      * @return \Illuminate\Http\Response
      */
-    public function update(ClientReviewUpdateRequest $request, ClientReview $clientReview)
+    public function update(ClientReviewUpdateRequest $request, ClientReview $clientReview): RedirectResponse
     {
         $data = $request->validated();
 
@@ -86,7 +89,7 @@ class ClientReviewController extends Controller
 
         $clientReview->update($data);
 
-        return redirect()->route('client-reviews.index');
+        return Redirect::route('client-reviews.index');
     }
 
     /**
@@ -95,10 +98,10 @@ class ClientReviewController extends Controller
      * @param  \App\Models\ClientReview  $clientReview
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClientReview $clientReview)
+    public function destroy(ClientReview $clientReview): RedirectResponse
     {
         $clientReview->delete();
 
-        return redirect()->route('client-reviews.index');
+        return Redirect::route('client-reviews.index');
     }
 }

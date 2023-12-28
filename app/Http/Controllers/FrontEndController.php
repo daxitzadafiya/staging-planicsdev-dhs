@@ -18,10 +18,13 @@ use App\Models\Service;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class FrontEndController extends Controller
 {
-    public function dashboard()
+    public function dashboard(): View
     {
         $total_goals = Goal::where('is_active', 1)->count();
 
@@ -34,7 +37,7 @@ class FrontEndController extends Controller
         return view('pages.dashboard', compact('total_goals', 'total_clients_and_partners', 'total_enquiries', 'total_portfolios'));
     }
 
-    public function index()
+    public function index(): View
     {
         $heroSections = HeroSection::where('is_active', 1)->get();
         $setting = Setting::first();
@@ -48,7 +51,7 @@ class FrontEndController extends Controller
         return view('frontend.index', compact('heroSections', 'setting', 'pointOfDifferences', 'services', 'portfolios', 'key_features', 'our_processes', 'client_reviews'));
     }
 
-    public function about()
+    public function about(): View
     {
         $setting = Setting::first();
         $services = Service::where('is_active', 1)->with('service_categories')->get();
@@ -58,7 +61,7 @@ class FrontEndController extends Controller
         return view('frontend.about', compact('setting', 'services', 'goals', 'ourClients'));
     }
 
-    public function show(Request $request)
+    public function show(Request $request): View
     {
         $setting = Setting::first();
         $services = Service::where('is_active', 1)->with('service_categories')->get();
@@ -69,7 +72,7 @@ class FrontEndController extends Controller
         return view('frontend.service', compact('setting', 'services', 'service', 'core_values'));
     }
 
-    public function services()
+    public function services(): View
     {
         $services = Service::where('is_active', 1)->with('service_categories')->get();
         $setting = Setting::first();
@@ -96,7 +99,7 @@ class FrontEndController extends Controller
         return view('frontend.services', compact('services', 'setting', 'achievement_rows'));
     }
 
-    public function portfolio()
+    public function portfolio(): View
     {
         $setting = Setting::first();
         $services = Service::where('is_active', 1)->with('service_categories', 'portfolios')->get();
@@ -105,7 +108,7 @@ class FrontEndController extends Controller
         return view('frontend.portfolio', compact('setting', 'services', 'portfolios'));
     }
 
-    public function contactUs()
+    public function contactUs(): View
     {
         $setting = Setting::first();
         $services = Service::where('is_active', 1)->with('service_categories')->get();
@@ -113,7 +116,7 @@ class FrontEndController extends Controller
         return view('frontend.contact-us', compact('setting', 'services'));
     }
 
-    public function enquiry(Request $request)
+    public function enquiry(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => 'required',
@@ -129,20 +132,20 @@ class FrontEndController extends Controller
 
         Enquiry::create($data);
 
-        return redirect()->back()->with('message', 'Enquiry Send Successfully!');
+        return Redirect::back()->with('message', 'Enquiry Send Successfully!');
     }
 
-    public function enquiriesList()
+    public function enquiriesList(): View
     {
         $enquiries = Enquiry::paginate();
 
         return view('pages.enquiry.index', compact('enquiries'));
     }
 
-    public function destroy(Enquiry $enquiry)
+    public function destroy(Enquiry $enquiry): RedirectResponse
     {   
         $enquiry->delete();
 
-        return redirect()->route('enquiries.index');
+        return Redirect::route('enquiries.index');
     }
 }

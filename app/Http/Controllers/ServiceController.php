@@ -7,6 +7,9 @@ use App\Http\Request\ServiceUpdateRequest;
 use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ServiceController extends Controller
 {
@@ -15,7 +18,7 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $services = Service::paginate();
 
@@ -27,7 +30,7 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('pages.service.create');
     }
@@ -38,7 +41,7 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ServiceStoreRequest $request)
+    public function store(ServiceStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -56,7 +59,7 @@ class ServiceController extends Controller
 
         Service::create($data);
 
-        return redirect()->route('services.index');
+        return Redirect::route('services.index');
     }
 
     /**
@@ -65,7 +68,7 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Service $service): View
     {
         return view('pages.service.create', compact('service'));
     }
@@ -77,7 +80,7 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceUpdateRequest $request, Service $service)
+    public function update(ServiceUpdateRequest $request, Service $service): RedirectResponse
     {
         $data = $request->validated();
 
@@ -103,7 +106,7 @@ class ServiceController extends Controller
 
         $service->update($data);
 
-        return redirect()->route('services.index');
+        return Redirect::route('services.index');
     }
 
     /**
@@ -112,10 +115,10 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Service $service): RedirectResponse
     {
         $service->delete();
 
-        return redirect()->route('services.index');
+        return Redirect::route('services.index');
     }
 }

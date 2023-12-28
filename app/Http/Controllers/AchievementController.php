@@ -6,6 +6,9 @@ use App\Http\Request\AchievementStoreRequest;
 use App\Http\Request\AchievementUpdateRequest;
 use App\Models\Achievement;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class AchievementController extends Controller
 {
@@ -14,7 +17,7 @@ class AchievementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $achievements = Achievement::paginate();
 
@@ -26,7 +29,7 @@ class AchievementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('pages.service.achievements.create');
     }
@@ -37,7 +40,7 @@ class AchievementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AchievementStoreRequest $request)
+    public function store(AchievementStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -49,7 +52,7 @@ class AchievementController extends Controller
 
         Achievement::create($data);
 
-        return redirect()->route('achievements.index');
+        return Redirect::route('achievements.index');
     }
 
     /**
@@ -58,7 +61,7 @@ class AchievementController extends Controller
      * @param  \App\Models\Achievement  $achievement
      * @return \Illuminate\Http\Response
      */
-    public function edit(Achievement $achievement)
+    public function edit(Achievement $achievement): View
     {
         return view('pages.service.achievements.create', compact('achievement'));
     }
@@ -70,7 +73,7 @@ class AchievementController extends Controller
      * @param  \App\Models\Achievement  $achievement
      * @return \Illuminate\Http\Response
      */
-    public function update(AchievementUpdateRequest $request, Achievement $achievement)
+    public function update(AchievementUpdateRequest $request, Achievement $achievement): RedirectResponse
     {
         $data = $request->validated();
 
@@ -86,7 +89,7 @@ class AchievementController extends Controller
 
         $achievement->update($data);
 
-        return redirect()->route('achievements.index');
+        return Redirect::route('achievements.index');
     }
 
     /**
@@ -95,10 +98,10 @@ class AchievementController extends Controller
      * @param  \App\Models\Achievement  $achievement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Achievement $achievement)
+    public function destroy(Achievement $achievement): RedirectResponse
     {
         $achievement->delete();
 
-        return redirect()->route('achievements.index');
+        return Redirect::route('achievements.index');
     }
 }

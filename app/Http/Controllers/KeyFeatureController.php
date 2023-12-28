@@ -6,6 +6,9 @@ use App\Http\Request\KeyFeatureStoreRequest;
 use App\Http\Request\KeyFeatureUpdateRequest;
 use App\Models\KeyFeature;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class KeyFeatureController extends Controller
 {
@@ -14,7 +17,7 @@ class KeyFeatureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $keyFeatures = KeyFeature::paginate();
 
@@ -26,7 +29,7 @@ class KeyFeatureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('pages.key-features.create');
     }
@@ -37,7 +40,7 @@ class KeyFeatureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KeyFeatureStoreRequest $request)
+    public function store(KeyFeatureStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -49,7 +52,7 @@ class KeyFeatureController extends Controller
 
         KeyFeature::create($data);
 
-        return redirect()->route('key-features.index');
+        return Redirect::route('key-features.index');
     }
 
     /**
@@ -58,7 +61,7 @@ class KeyFeatureController extends Controller
      * @param  \App\Models\KeyFeature  $keyFeature
      * @return \Illuminate\Http\Response
      */
-    public function edit(KeyFeature $keyFeature)
+    public function edit(KeyFeature $keyFeature): View
     {
         return view('pages.key-features.create', compact('keyFeature'));
     }
@@ -70,7 +73,7 @@ class KeyFeatureController extends Controller
      * @param  \App\Models\KeyFeature  $keyFeature
      * @return \Illuminate\Http\Response
      */
-    public function update(KeyFeatureUpdateRequest $request, KeyFeature $keyFeature)
+    public function update(KeyFeatureUpdateRequest $request, KeyFeature $keyFeature): RedirectResponse
     {
         $data = $request->validated();
 
@@ -86,7 +89,7 @@ class KeyFeatureController extends Controller
 
         $keyFeature->update($data);
 
-        return redirect()->route('key-features.index');
+        return Redirect::route('key-features.index');
     }
 
     /**
@@ -95,10 +98,10 @@ class KeyFeatureController extends Controller
      * @param  \App\Models\KeyFeature  $keyFeature
      * @return \Illuminate\Http\Response
      */
-    public function destroy(KeyFeature $keyFeature)
+    public function destroy(KeyFeature $keyFeature): RedirectResponse
     {
         $keyFeature->delete();
 
-        return redirect()->route('key-features.index');
+        return Redirect::route('key-features.index');
     }
 }

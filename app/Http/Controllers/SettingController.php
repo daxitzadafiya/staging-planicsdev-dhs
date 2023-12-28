@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class SettingController extends Controller
 {
@@ -13,7 +16,7 @@ class SettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $setting = Setting::firstOrNew();
 
@@ -26,7 +29,7 @@ class SettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $data = $request->except('id');
 
@@ -109,6 +112,6 @@ class SettingController extends Controller
 
         Setting::updateOrCreate(['id' => $request->id], $data);
 
-        return redirect()->back();
+        return Redirect::back();
     }
 }

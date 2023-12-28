@@ -6,6 +6,9 @@ use App\Http\Request\CoreValueStoreRequest;
 use App\Http\Request\CoreValueUpdateRequest;
 use App\Models\CoreValue;
 use App\Models\Service;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class CoreValueController extends Controller
 {
@@ -14,7 +17,7 @@ class CoreValueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $coreValues = CoreValue::paginate();
 
@@ -26,7 +29,7 @@ class CoreValueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         $services = Service::all();
 
@@ -39,7 +42,7 @@ class CoreValueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CoreValueStoreRequest $request)
+    public function store(CoreValueStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -47,7 +50,7 @@ class CoreValueController extends Controller
 
         CoreValue::create($data);
 
-        return redirect()->route('core-values.index');
+        return Redirect::route('core-values.index');
     }
 
     /**
@@ -56,7 +59,7 @@ class CoreValueController extends Controller
      * @param  \App\Models\CoreValue  $coreValue
      * @return \Illuminate\Http\Response
      */
-    public function edit(CoreValue $coreValue)
+    public function edit(CoreValue $coreValue): View
     {
         $services = Service::all();
 
@@ -70,7 +73,7 @@ class CoreValueController extends Controller
      * @param  \App\Models\CoreValue  $coreValue
      * @return \Illuminate\Http\Response
      */
-    public function update(CoreValueUpdateRequest $request, CoreValue $coreValue)
+    public function update(CoreValueUpdateRequest $request, CoreValue $coreValue): RedirectResponse
     {
         $data = $request->validated();
 
@@ -78,7 +81,7 @@ class CoreValueController extends Controller
 
         $coreValue->update($data);
 
-        return redirect()->route('core-values.index');
+        return Redirect::route('core-values.index');
     }
 
     /**
@@ -87,10 +90,10 @@ class CoreValueController extends Controller
      * @param  \App\Models\CoreValue  $coreValue
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CoreValue $coreValue)
+    public function destroy(CoreValue $coreValue): RedirectResponse
     {
         $coreValue->delete();
 
-        return redirect()->route('core-values.index');
+        return Redirect::route('core-values.index');
     }
 }

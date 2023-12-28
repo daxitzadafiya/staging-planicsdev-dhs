@@ -6,6 +6,9 @@ use App\Http\Request\OurProcessStoreRequest;
 use App\Http\Request\OurProcessUpdateRequest;
 use App\Models\OurProcess;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class OurProcessController extends Controller
 {
@@ -14,7 +17,7 @@ class OurProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $ourProcesses = OurProcess::paginate();
 
@@ -26,7 +29,7 @@ class OurProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('pages.our-processes.create');
     }
@@ -37,7 +40,7 @@ class OurProcessController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OurProcessStoreRequest $request)
+    public function store(OurProcessStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -49,7 +52,7 @@ class OurProcessController extends Controller
 
         OurProcess::create($data);
 
-        return redirect()->route('our-processes.index');
+        return Redirect::route('our-processes.index');
     }
 
     /**
@@ -58,7 +61,7 @@ class OurProcessController extends Controller
      * @param  \App\Models\OurProcess  $ourProcess
      * @return \Illuminate\Http\Response
      */
-    public function edit(OurProcess $ourProcess)
+    public function edit(OurProcess $ourProcess): View
     {
         return view('pages.our-processes.create', compact('ourProcess'));
     }
@@ -70,7 +73,7 @@ class OurProcessController extends Controller
      * @param  \App\Models\OurProcess  $ourProcess
      * @return \Illuminate\Http\Response
      */
-    public function update(OurProcessUpdateRequest $request, OurProcess $ourProcess)
+    public function update(OurProcessUpdateRequest $request, OurProcess $ourProcess): RedirectResponse
     {
         $data = $request->validated();
 
@@ -86,7 +89,7 @@ class OurProcessController extends Controller
 
         $ourProcess->update($data);
 
-        return redirect()->route('our-processes.index');
+        return Redirect::route('our-processes.index');
     }
 
     /**
@@ -95,10 +98,10 @@ class OurProcessController extends Controller
      * @param  \App\Models\OurProcess  $ourProcess
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OurProcess $ourProcess)
+    public function destroy(OurProcess $ourProcess): RedirectResponse
     {
         $ourProcess->delete();
 
-        return redirect()->route('our-processes.index');
+        return Redirect::route('our-processes.index');
     }
 }

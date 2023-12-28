@@ -6,6 +6,9 @@ use App\Http\Request\PointOfDifferenceStoreRequest;
 use App\Http\Request\PointOfDifferenceUpdateRequest;
 use App\Models\PointOfDifference;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class PointOfDifferenceController extends Controller
 {
@@ -14,7 +17,7 @@ class PointOfDifferenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $pointOfDifferences = PointOfDifference::paginate();
 
@@ -26,7 +29,7 @@ class PointOfDifferenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('pages.points_of_difference.create');
     }
@@ -37,7 +40,7 @@ class PointOfDifferenceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PointOfDifferenceStoreRequest $request)
+    public function store(PointOfDifferenceStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -49,7 +52,7 @@ class PointOfDifferenceController extends Controller
 
         PointOfDifference::create($data);
 
-        return redirect()->route('point-of-differences.index');
+        return Redirect::route('point-of-differences.index');
     }
 
     /**
@@ -58,7 +61,7 @@ class PointOfDifferenceController extends Controller
      * @param  \App\Models\PointOfDifference  $pointOfDifference
      * @return \Illuminate\Http\Response
      */
-    public function edit(PointOfDifference $pointOfDifference)
+    public function edit(PointOfDifference $pointOfDifference): View
     {
         return view('pages.points_of_difference.create', compact('pointOfDifference'));
     }
@@ -70,7 +73,7 @@ class PointOfDifferenceController extends Controller
      * @param  \App\Models\PointOfDifference  $pointOfDifference
      * @return \Illuminate\Http\Response
      */
-    public function update(PointOfDifferenceUpdateRequest $request, PointOfDifference $pointOfDifference)
+    public function update(PointOfDifferenceUpdateRequest $request, PointOfDifference $pointOfDifference): RedirectResponse
     {
         $data = $request->validated();
 
@@ -86,7 +89,7 @@ class PointOfDifferenceController extends Controller
 
         $pointOfDifference->update($data);
 
-        return redirect()->route('point-of-differences.index');
+        return Redirect::route('point-of-differences.index');
     }
 
     /**
@@ -95,10 +98,10 @@ class PointOfDifferenceController extends Controller
      * @param  \App\Models\PointOfDifference  $pointOfDifference
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PointOfDifference $pointOfDifference)
+    public function destroy(PointOfDifference $pointOfDifference): RedirectResponse
     {
         $pointOfDifference->delete();
 
-        return redirect()->route('point-of-differences.index');
+        return Redirect::route('point-of-differences.index');
     }
 }

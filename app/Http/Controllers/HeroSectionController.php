@@ -6,6 +6,9 @@ use App\Http\Request\HeroSectionStoreRequest;
 use App\Http\Request\HeroSectionUpdateRequest;
 use App\Models\HeroSection;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class HeroSectionController extends Controller
 {
@@ -14,7 +17,7 @@ class HeroSectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $heroSections = HeroSection::paginate();
 
@@ -26,7 +29,7 @@ class HeroSectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('pages.hero_section.create');
     }
@@ -37,7 +40,7 @@ class HeroSectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(HeroSectionStoreRequest $request)
+    public function store(HeroSectionStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -49,7 +52,7 @@ class HeroSectionController extends Controller
 
         HeroSection::create($data);
 
-        return redirect()->route('hero-sections.index');
+        return Redirect::route('hero-sections.index');
     }
 
     /**
@@ -58,7 +61,7 @@ class HeroSectionController extends Controller
      * @param  \App\Models\HeroSection  $heroSection
      * @return \Illuminate\Http\Response
      */
-    public function edit(HeroSection $heroSection)
+    public function edit(HeroSection $heroSection): View
     {
         return view('pages.hero_section.create', compact('heroSection'));
     }
@@ -70,7 +73,7 @@ class HeroSectionController extends Controller
      * @param  \App\Models\HeroSection  $heroSection
      * @return \Illuminate\Http\Response
      */
-    public function update(HeroSectionUpdateRequest $request, HeroSection $heroSection)
+    public function update(HeroSectionUpdateRequest $request, HeroSection $heroSection): RedirectResponse
     {
         $data = $request->validated();
 
@@ -86,7 +89,7 @@ class HeroSectionController extends Controller
 
         $heroSection->update($data);
 
-        return redirect()->route('hero-sections.index');
+        return Redirect::route('hero-sections.index');
     }
 
     /**
@@ -95,10 +98,10 @@ class HeroSectionController extends Controller
      * @param  \App\Models\HeroSection  $heroSection
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HeroSection $heroSection)
+    public function destroy(HeroSection $heroSection): RedirectResponse
     {
         $heroSection->delete();
 
-        return redirect()->route('hero-sections.index');
+        return Redirect::route('hero-sections.index');
     }
 }

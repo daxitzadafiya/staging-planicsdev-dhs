@@ -6,6 +6,9 @@ use App\Http\Request\GoalStoreRequest;
 use App\Http\Request\GoalUpdateRequest;
 use App\Models\Goal;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class GoalController extends Controller
 {
@@ -14,7 +17,7 @@ class GoalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $goals = Goal::paginate();
 
@@ -26,7 +29,7 @@ class GoalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('pages.about-us.goals.create');
     }
@@ -37,7 +40,7 @@ class GoalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GoalStoreRequest $request)
+    public function store(GoalStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -49,7 +52,7 @@ class GoalController extends Controller
 
         Goal::create($data);
 
-        return redirect()->route('goals.index');
+        return Redirect::route('goals.index');
     }
 
     /**
@@ -58,7 +61,7 @@ class GoalController extends Controller
      * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function edit(Goal $goal)
+    public function edit(Goal $goal): View
     {
         return view('pages.about-us.goals.create', compact('goal'));
     }
@@ -70,7 +73,7 @@ class GoalController extends Controller
      * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function update(GoalUpdateRequest $request, Goal $goal)
+    public function update(GoalUpdateRequest $request, Goal $goal): RedirectResponse
     {
         $data = $request->validated();
 
@@ -86,7 +89,7 @@ class GoalController extends Controller
 
         $goal->update($data);
 
-        return redirect()->route('goals.index');
+        return Redirect::route('goals.index');
     }
 
     /**
@@ -95,10 +98,10 @@ class GoalController extends Controller
      * @param  \App\Models\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Goal $goal)
+    public function destroy(Goal $goal): RedirectResponse
     {
         $goal->delete();
 
-        return redirect()->route('goals.index');
+        return Redirect::route('goals.index');
     }
 }

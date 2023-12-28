@@ -6,6 +6,9 @@ use App\Http\Request\ServiceCategoryStoreRequest;
 use App\Http\Request\ServiceCategoryUpdateRequest;
 use App\Models\Service;
 use App\Models\ServiceCategory;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ServiceCategoryController extends Controller
 {
@@ -14,7 +17,7 @@ class ServiceCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $serviceCategories = ServiceCategory::paginate();
 
@@ -26,7 +29,7 @@ class ServiceCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         $services = Service::all();
 
@@ -39,7 +42,7 @@ class ServiceCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ServiceCategoryStoreRequest $request)
+    public function store(ServiceCategoryStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -47,7 +50,7 @@ class ServiceCategoryController extends Controller
 
         ServiceCategory::create($data);
 
-        return redirect()->route('service-categories.index');
+        return Redirect::route('service-categories.index');
     }
 
     /**
@@ -56,7 +59,7 @@ class ServiceCategoryController extends Controller
      * @param  \App\Models\ServiceCategory  $serviceCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServiceCategory $serviceCategory)
+    public function edit(ServiceCategory $serviceCategory): View
     {
         $services = Service::all();
 
@@ -70,7 +73,7 @@ class ServiceCategoryController extends Controller
      * @param  \App\Models\ServiceCategory  $serviceCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceCategoryUpdateRequest $request, ServiceCategory $serviceCategory)
+    public function update(ServiceCategoryUpdateRequest $request, ServiceCategory $serviceCategory): RedirectResponse
     {
         $data = $request->validated();
 
@@ -78,7 +81,7 @@ class ServiceCategoryController extends Controller
 
         $serviceCategory->update($data);
 
-        return redirect()->route('service-categories.index');
+        return Redirect::route('service-categories.index');
     }
 
     /**
@@ -87,10 +90,10 @@ class ServiceCategoryController extends Controller
      * @param  \App\Models\ServiceCategory  $serviceCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ServiceCategory $serviceCategory)
+    public function destroy(ServiceCategory $serviceCategory): RedirectResponse
     {
         $serviceCategory->delete();
 
-        return redirect()->route('service-categories.index');
+        return Redirect::route('service-categories.index');
     }
 }

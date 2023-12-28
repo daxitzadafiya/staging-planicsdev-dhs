@@ -6,6 +6,9 @@ use App\Http\Request\OurClientStoreRequest;
 use App\Http\Request\OurClientUpdateRequest;
 use App\Models\OurClient;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class OurClientController extends Controller
 {
@@ -14,7 +17,7 @@ class OurClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $ourClients = OurClient::paginate();
 
@@ -26,7 +29,7 @@ class OurClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('pages.about-us.our-clients.create');
     }
@@ -37,7 +40,7 @@ class OurClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OurClientStoreRequest $request)
+    public function store(OurClientStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -49,7 +52,7 @@ class OurClientController extends Controller
 
         OurClient::create($data);
 
-        return redirect()->route('our-clients.index');
+        return Redirect::route('our-clients.index');
     }
 
     /**
@@ -58,7 +61,7 @@ class OurClientController extends Controller
      * @param  \App\Models\OurClient  $ourClient
      * @return \Illuminate\Http\Response
      */
-    public function edit(OurClient $ourClient)
+    public function edit(OurClient $ourClient): View
     {
         return view('pages.about-us.our-clients.create', compact('ourClient'));
     }
@@ -70,7 +73,7 @@ class OurClientController extends Controller
      * @param  \App\Models\OurClient  $ourClient
      * @return \Illuminate\Http\Response
      */
-    public function update(OurClientUpdateRequest $request, OurClient $ourClient)
+    public function update(OurClientUpdateRequest $request, OurClient $ourClient): RedirectResponse
     {
         $data = $request->validated();
 
@@ -86,7 +89,7 @@ class OurClientController extends Controller
 
         $ourClient->update($data);
 
-        return redirect()->route('our-clients.index');
+        return Redirect::route('our-clients.index');
     }
 
     /**
@@ -95,10 +98,10 @@ class OurClientController extends Controller
      * @param  \App\Models\OurClient  $ourClient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OurClient $ourClient)
+    public function destroy(OurClient $ourClient): RedirectResponse
     {
         $ourClient->delete();
 
-        return redirect()->route('our-clients.index');
+        return Redirect::route('our-clients.index');
     }
 }
