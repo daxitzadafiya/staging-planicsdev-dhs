@@ -45,6 +45,7 @@ class Setting extends Model
         'success_story_sub_title',
         'success_story_sub_description',
         'success_story_logo',
+        'our_works',
         'our_process_title',
         'our_process_description',
         'client_says_title',
@@ -69,6 +70,14 @@ class Setting extends Model
     ];
     
     protected function aboutUsKeyPartners(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => json_decode($value, true),
+            set: fn ($value) => json_encode($value, true),
+        );
+    }
+    
+    protected function ourWorks(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => json_decode($value, true),

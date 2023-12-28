@@ -18,7 +18,7 @@ class AchievementController extends Controller
     {
         $achievements = Achievement::paginate();
 
-        return view('pages.achievements.index', compact('achievements'));
+        return view('pages.service.achievements.index', compact('achievements'));
     }
 
     /**
@@ -28,7 +28,7 @@ class AchievementController extends Controller
      */
     public function create()
     {
-        return view('pages.achievements.create');
+        return view('pages.service.achievements.create');
     }
 
     /**
@@ -60,7 +60,7 @@ class AchievementController extends Controller
      */
     public function edit(Achievement $achievement)
     {
-        return view('pages.achievements.create', compact('achievement'));
+        return view('pages.service.achievements.create', compact('achievement'));
     }
 
     /**

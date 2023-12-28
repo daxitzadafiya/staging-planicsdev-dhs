@@ -24,35 +24,35 @@
                     @endisset
                     <div>
                         <label for="title" class="form-label">Title</label>
-                        <input id="title" type="text" name="title" class="form-control w-full" value="{{ isset($heroSection->title) ? $heroSection->title : old('title') }}" placeholder="Please Enter Title">
+                        <input id="title" type="text" name="title" class="form-control w-full @error('title') border-danger @enderror" value="{{ isset($heroSection->title) ? $heroSection->title : old('title') }}" placeholder="Please Enter Title">
                         @error('title')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="sub_title" class="form-label">Sub Title</label>
-                        <input id="sub_title" type="text" name="sub_title" class="form-control w-full" value="{{ isset($heroSection->sub_title) ? $heroSection->sub_title : old('sub_title') }}" placeholder="Please Enter Sub Title">
+                        <input id="sub_title" type="text" name="sub_title" class="form-control w-full @error('sub_title') border-danger @enderror" value="{{ isset($heroSection->sub_title) ? $heroSection->sub_title : old('sub_title') }}" placeholder="Please Enter Sub Title">
                         @error('sub_title')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="description" id="description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($heroSection->description) ? $heroSection->description : old('description') }}</textarea>
+                        <textarea name="description" id="description" class="form-control w-full @error('description') border-danger @enderror" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($heroSection->description) ? $heroSection->description : old('description') }}</textarea>
                         @error('description')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="button_text" class="form-label">Button Text</label>
-                        <input id="button_text" type="text" name="button_text" class="form-control w-full" value="{{ isset($heroSection->button_text) ? $heroSection->button_text : old('button_text') }}" placeholder="Please Enter Button Text">
+                        <input id="button_text" type="text" name="button_text" class="form-control w-full @error('button_text') border-danger @enderror" value="{{ isset($heroSection->button_text) ? $heroSection->button_text : old('button_text') }}" placeholder="Please Enter Button Text">
                         @error('button_text')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="button_url" class="form-label">Button URL</label>
-                        <input id="button_url" type="text" name="button_url" class="form-control w-full" value="{{ isset($heroSection->button_url) ? $heroSection->button_url : old('button_url') }}" placeholder="Please Enter Button URL">
+                        <input id="button_url" type="text" name="button_url" class="form-control w-full @error('button_url') border-danger @enderror" value="{{ isset($heroSection->button_url) ? $heroSection->button_url : old('button_url') }}" placeholder="Please Enter Button URL">
                         @error('button_url')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror

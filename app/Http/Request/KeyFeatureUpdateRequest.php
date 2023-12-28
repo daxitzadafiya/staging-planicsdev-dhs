@@ -19,7 +19,7 @@ class KeyFeatureUpdateRequest extends FormRequest
             'description' => 'required',
             'image' => [
                 Rule::requiredIf(function () {
-                    return !$this->key_features->image;
+                    return !$this->key_feature->image;
                 })
             ],
             'is_active' => '',

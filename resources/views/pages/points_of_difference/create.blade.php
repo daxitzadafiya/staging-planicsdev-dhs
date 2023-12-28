@@ -24,28 +24,28 @@
                     @endisset
                     <div>
                         <label for="title" class="form-label">Title</label>
-                        <input id="title" type="text" name="title" class="form-control w-full" value="{{ isset($pointOfDifference->title) ? $pointOfDifference->title : old('title') }}" placeholder="Please Enter Title">
+                        <input id="title" type="text" name="title" class="form-control w-full @error('title') border-danger @enderror" value="{{ isset($pointOfDifference->title) ? $pointOfDifference->title : old('title') }}" placeholder="Please Enter Title">
                         @error('title')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="description" id="description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($pointOfDifference->description) ? $pointOfDifference->description : old('description') }}</textarea>
+                        <textarea name="description" id="description" class="form-control w-full @error('description') border-danger @enderror" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($pointOfDifference->description) ? $pointOfDifference->description : old('description') }}</textarea>
                         @error('description')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="link_text" class="form-label">Link Text</label>
-                        <input id="link_text" type="text" name="link_text" class="form-control w-full" value="{{ isset($pointOfDifference->link_text) ? $pointOfDifference->link_text : old('link_text') }}" placeholder="Please Enter Link Text">
+                        <input id="link_text" type="text" name="link_text" class="form-control w-full @error('link_text') border-danger @enderror" value="{{ isset($pointOfDifference->link_text) ? $pointOfDifference->link_text : old('link_text') }}" placeholder="Please Enter Link Text">
                         @error('link_text')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="link_url" class="form-label">Link URL</label>
-                        <input id="link_url" type="text" name="link_url" class="form-control w-full" value="{{ isset($pointOfDifference->link_url) ? $pointOfDifference->link_url : old('link_url') }}" placeholder="Please Enter Link URL">
+                        <input id="link_url" type="text" name="link_url" class="form-control w-full @error('link_url') border-danger @enderror" value="{{ isset($pointOfDifference->link_url) ? $pointOfDifference->link_url : old('link_url') }}" placeholder="Please Enter Link URL">
                         @error('link_url')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror

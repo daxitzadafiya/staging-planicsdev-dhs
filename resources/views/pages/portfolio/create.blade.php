@@ -24,14 +24,14 @@
                     @endisset
                     <div>
                         <label for="title" class="form-label">Title</label>
-                        <input id="title" type="text" name="title" class="form-control w-full" value="{{ isset($portfolio->title) ? $portfolio->title : old('title') }}" placeholder="Please Enter Title">
+                        <input id="title" type="text" name="title" class="form-control w-full @error('title') border-danger @enderror" value="{{ isset($portfolio->title) ? $portfolio->title : old('title') }}" placeholder="Please Enter Title">
                         @error('title')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="service_id" class="form-label">Service</label>
-                        <select name="service_id" class="form-control w-full" id="service_id">
+                        <select name="service_id" class="form-control w-full @error('service_id') border-danger @enderror" id="service_id">
                             <option value="">Select Service</option>
                             @foreach ($services as $service)
                                 <option value="{{ $service->id }}" {{ isset($portfolio) && $service->id == $portfolio->service_id ? 'selected' : '' }}>{{ $service->title }}</option>    

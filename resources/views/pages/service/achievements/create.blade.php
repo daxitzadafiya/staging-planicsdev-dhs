@@ -24,7 +24,7 @@
                     @endisset
                     <div>
                         <label for="title" class="form-label">Title</label>
-                        <input id="title" type="text" name="title" class="form-control w-full" value="{{ isset($achievement->title) ? $achievement->title : old('title') }}" placeholder="Please Enter Title">
+                        <input id="title" type="text" name="title" class="form-control w-full @error('title') border-danger @enderror" value="{{ isset($achievement->title) ? $achievement->title : old('title') }}" placeholder="Please Enter Title">
                         @error('title')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror

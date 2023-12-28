@@ -44,6 +44,7 @@ return new class extends Migration
             $table->string('success_story_sub_title')->nullable();
             $table->longText('success_story_sub_description')->nullable();
             $table->string('success_story_logo')->nullable();
+            $table->longText('our_works')->nullable();
             $table->string('our_process_title')->nullable();
             $table->longText('our_process_description')->nullable();
             $table->string('client_says_title')->nullable();

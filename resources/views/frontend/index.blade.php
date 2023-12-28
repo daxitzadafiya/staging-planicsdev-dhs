@@ -326,54 +326,24 @@
                                 {{ $setting->success_story_sub_description }}
                             </p>
                             <div class="row">
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="counter-box wow fadeInUp" data-wow-delay=".4s">
-                                        <div class="counter-text">
-                                            <h1>
-                                                <span class="counter">
-                                                    <span
-                                                        class="numscroller counter-box-numbers count-1 numscroller-big-bottom"
-                                                        data-slno="1" data-min="0" data-max="55" data-delay="20"
-                                                        data-count="40" data-increment="9">55</span>
-                                                </span>
-                                                <span class="plus-icon">+</span>
-                                            </h1>
-                                            <h6 class="mb-0 text">Completed Projects</h6>
+                                @foreach ($setting->our_works as $index => $our_work)
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="counter-box wow fadeInUp" data-wow-delay="{{ '.'.($index + 4).'s' }}">
+                                            <div class="counter-text">
+                                                <h1>
+                                                    <span class="counter">
+                                                        <span
+                                                            class="numscroller counter-box-numbers count-1 numscroller-big-bottom"
+                                                            data-slno="1" data-min="0" data-max="{{ $our_work['value'] }}" data-delay="20"
+                                                            data-count="40" data-increment="9">{{ $our_work['value'] }}</span>
+                                                    </span>
+                                                    <span class="plus-icon">+</span>
+                                                </h1>
+                                                <h6 class="mb-0 text">{{ $our_work['key'] }}</h6>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="counter-box wow fadeInUp" data-wow-delay=".5s">
-                                        <div class="counter-text">
-                                            <h1>
-                                                <span class="counter">
-                                                    <span
-                                                        class="numscroller counter-box-numbers count-1 numscroller-big-bottom"
-                                                        data-slno="1" data-min="0" data-max="12" data-delay="20"
-                                                        data-count="40" data-increment="9">12</span>
-                                                </span>
-                                                <span class="plus-icon">+</span>
-                                            </h1>
-                                            <h6 class="mb-0 text">Completed Projects</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="counter-box wow fadeInUp" data-wow-delay=".6s">
-                                        <div class="counter-text">
-                                            <h1>
-                                                <span class="counter">
-                                                    <span
-                                                        class="numscroller counter-box-numbers count-1 numscroller-big-bottom"
-                                                        data-slno="1" data-min="0" data-max="20" data-delay="20"
-                                                        data-count="40" data-increment="9">20</span>
-                                                </span>
-                                                <span class="plus-icon">+</span>
-                                            </h1>
-                                            <h6 class="mb-0 text">Completed Projects</h6>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

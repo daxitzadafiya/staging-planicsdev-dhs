@@ -152,7 +152,7 @@
                                                 </div>
                                             </div>
                                         @else
-                                            <div class="flex justify-between items-center mt-5 gap-x-5 removeRow">
+                                            <div class="flex justify-between mt-5 gap-x-5 removeRow">
                                                 <div class="w-full">
                                                     <input id="about_us_key_partners_title_{{ $key }}" type="text" name="about_us_key_partners[{{ $key }}][title]" class="form-control w-full" value="{{ $about_us_key_partner['title'] }}" placeholder="Please Enter Title" autocomplete="off">
                                                     <small class="text-danger" id="about_us_key_partners_title_error_{{ $key }}"></small>
@@ -336,6 +336,68 @@
                                 <img class="rounded-full" src="{{ url(Storage::url($setting->success_story_logo)) }}">
                             </div>
                         @endif
+                        <div class="gap-x-5 border border-slate-200 rounded-md p-8 mt-3">
+                            <h2 class="mb-3 font-bold">Our Works</h2>
+                            <div class="our_works_div">
+                                @if(isset($setting->our_works) && !empty($setting->our_works))
+                                    @foreach ($setting->our_works as $index => $our_work)
+                                        @if($loop->first)
+                                            <div class="flex justify-between gap-x-5">
+                                                <div class="w-full">
+                                                    <label for="our_works_key_{{ $index }}" class="form-label">Key</label>
+                                                    <input id="our_works_key_{{ $index }}" type="text" name="our_works[{{ $index }}][key]" class="form-control w-full" value="{{ $our_work['key'] }}" placeholder="Please Enter Key" autocomplete="off">
+                                                    <small class="text-danger" id="our_works_key_error_{{ $index }}"></small>
+                                                </div>
+                                                <div class="w-full">
+                                                    <label for="our_works_value_{{ $index }}" class="form-label">Value</label>
+                                                    <input id="our_works_value_{{ $index }}" type="text" name="our_works[{{ $index }}][value]" class="form-control w-full" value="{{ $our_work['value'] }}" placeholder="Please Enter Value" autocomplete="off">
+                                                    <small class="text-danger" id="our_works_value_error_{{ $index }}"></small>
+                                                </div>
+                                                <div class="mt-6">
+                                                    <button type="button" class="btn btn-sm btn-primary w-full addMoreWork" data-count="{{ count($setting->our_works) }}" onclick="addMoreWork(this)">
+                                                        <i data-lucide="plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="flex justify-between mt-5 gap-x-5 removeWorkRow">
+                                                <div class="w-full">
+                                                    <input id="our_works_key_{{ $index }}" type="text" name="our_works[{{ $index }}][key]" class="form-control w-full" value="{{ $our_work['key'] }}" placeholder="Please Enter Key" autocomplete="off">
+                                                    <small class="text-danger" id="our_works_key_error_{{ $index }}"></small>
+                                                </div>
+                                                <div class="w-full">
+                                                    <input id="our_works_value_{{ $index }}" type="text" name="our_works[{{ $index }}][value]" class="form-control w-full" value="{{ $our_work['value'] }}" placeholder="Please Enter Value" autocomplete="off">
+                                                    <small class="text-danger" id="our_works_value_error_{{ $index }}"></small>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="btn btn-sm btn-danger w-full" data-count="{{ count($setting->our_works) }}" onclick="removeWorkRow(this)">
+                                                        <i data-lucide="minus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @else    
+                                    <div class="flex justify-between gap-x-5">
+                                        <div class="w-full">
+                                            <label for="our_works_key_0" class="form-label">Key</label>
+                                            <input id="our_works_key_0" type="text" name="our_works[0][key]" class="form-control w-full" placeholder="Please Enter Key" autocomplete="off">
+                                            <small class="text-danger" id="our_works_key_error_0"></small>
+                                        </div>
+                                        <div class="w-full">
+                                            <label for="our_works_value_0" class="form-label">Value</label>
+                                            <input id="our_works_value_0" type="text" name="our_works[0][value]" class="form-control w-full" placeholder="Please Enter Value" autocomplete="off">
+                                            <small class="text-danger" id="our_works_value_error_0"></small>
+                                        </div>
+                                        <div class="mt-6">
+                                            <button type="button" class="btn btn-sm btn-primary w-full addMoreWork" data-count="0" onclick="addMoreWork(this)">
+                                                <i data-lucide="plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                     <div id="our_process" class="tab-pane" role="tabpanel" aria-labelledby="our_process-tab">
                         <div>
@@ -461,7 +523,7 @@
             let increment = ++count;
 
             let html = ``;
-                html += `<div class="flex justify-between items-center mt-5 gap-x-5 removeRow">`;
+                html += `<div class="flex justify-between mt-5 gap-x-5 removeRow">`;
                 html += `<div class="w-full">`;
                 html += `<input id="about_us_key_partners_title_${increment}" type="text" name="about_us_key_partners[${increment}][title]" class="form-control w-full" placeholder="Please Enter Title" autocomplete="off">`;
                 html += `<small class="text-danger" id="about_us_key_partners_title_error_${increment}"></small>`;
@@ -491,6 +553,61 @@
             $('.addMore').attr('data-count', count);
 
             $(data).parents('.removeRow').remove();
+        };
+
+        const addMoreWork = (data) => {
+            let count = $(data).attr('data-count');
+                count = parseInt(count);
+
+            $(`#our_works_key_${count}`).removeClass('border-danger');
+            $(`#our_works_value_${count}`).removeClass('border-danger');
+            $(`#our_works_key_error_${count}`).html('');
+            $(`#our_works_value_error_${count}`).html('');
+            if($(`#our_works_key_${count}`).val() == "") {
+                $(`#our_works_key_${count}`).addClass('border-danger');
+                $(`#our_works_key_error_${count}`).html('The Key field is required!');
+                return false;
+            }
+
+            if($(`#our_works_value_${count}`).val() == "") {
+                $(`#our_works_value_${count}`).addClass('border-danger');
+                $(`#our_works_value_error_${count}`).html('The Value field is required!');
+                return false;
+            }
+
+            let increment = ++count;
+
+            let html = ``;
+                html += `<div class="flex justify-between mt-5 gap-x-5 removeWorkRow">`;
+                html += `<div class="w-full">`;
+                html += `<input id="our_works_key_${increment}" type="text" name="our_works[${increment}][key]" class="form-control w-full" placeholder="Please Enter Key" autocomplete="off">`;
+                html += `<small class="text-danger" id="our_works_key_error_${increment}"></small>`;
+                html += `</div>`;
+                html += `<div class="w-full">`;
+                html += `<input id="our_works_value_${increment}" type="text" name="our_works[${increment}][value]" class="form-control w-full" placeholder="Please Enter Value" autocomplete="off">`;
+                html += `<small class="text-danger" id="our_works_value_error_${increment}"></small>`;
+                html += `</div>`;
+                html += `<div>`;
+                html += `<button type="button" class="btn btn-sm btn-danger w-full" data-count="${increment}" onclick="removeWorkRow(this)">`;
+                html += `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="minus" data-lucide="minus" class="lucide lucide-minus">`;
+                html += `<line x1="5" y1="12" x2="19" y2="12"></line>`;
+                html += `</svg>`;
+                html += `</button>`;
+                html += `</div>`;
+                html += `</div>`;
+
+                $('.addMoreWork').attr('data-count', increment);
+                $('.our_works_div').append(html);
+        };
+
+        const removeWorkRow = (data) => {
+            let count = $(data).attr('data-count');
+                count = parseInt(count);
+                count = Math.max(0, count - 1);
+
+            $('.addMoreWork').attr('data-count', count);
+
+            $(data).parents('.removeWorkRow').remove();
         };
     </script>
 @endpush

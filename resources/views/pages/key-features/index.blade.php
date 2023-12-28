@@ -9,11 +9,11 @@
 @endsection
 
 @section('content')
-    <h2 class="intro-y text-lg font-medium mt-10">
-        Key Features
-    </h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap justify-end sm:flex-nowrap items-center mt-2">
+        <div class="intro-y col-span-12 flex justify-between items-center sm:flex-nowrap items-center mt-2">
+            <h2 class="intro-y text-lg font-medium">
+                Key Features
+            </h2>
             <a href="{{ route('key-features.create') }}" class="btn btn-primary shadow-md mr-2">Create</a>
         </div>
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">

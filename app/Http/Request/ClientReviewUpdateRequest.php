@@ -18,10 +18,10 @@ class ClientReviewUpdateRequest extends FormRequest
             'name' => 'required',
             'image' => [
                 Rule::requiredIf(function () {
-                    return !$this->client_reviews->image;
+                    return !$this->client_review->image;
                 })
             ],
-            'rating' => 'required|float|between:1,5',
+            'rating' => 'required|numeric|between:1,5',
             'review' => 'required',
             'is_active' => '',
         ];

@@ -24,14 +24,14 @@
                     @endisset
                     <div>
                         <label for="title" class="form-label">Title</label>
-                        <input id="title" type="text" name="title" class="form-control w-full" value="{{ isset($ourProcess->title) ? $ourProcess->title : old('title') }}" placeholder="Please Enter Title">
+                        <input id="title" type="text" name="title" class="form-control w-full @error('title') border-danger @enderror" value="{{ isset($ourProcess->title) ? $ourProcess->title : old('title') }}" placeholder="Please Enter Title">
                         @error('title')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="description" id="description" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($ourProcess->description) ? $ourProcess->description : old('description') }}</textarea>
+                        <textarea name="description" id="description" class="form-control w-full @error('description') border-danger @enderror" cols="10" rows="10" placeholder="Please Enter Description">{{ isset($ourProcess->description) ? $ourProcess->description : old('description') }}</textarea>
                         @error('description')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror

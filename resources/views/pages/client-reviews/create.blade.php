@@ -24,21 +24,22 @@
                     @endisset
                     <div>
                         <label for="name" class="form-label">Name</label>
-                        <input id="name" type="text" name="name" class="form-control w-full" value="{{ isset($clientReview->name) ? $clientReview->name : old('name') }}" placeholder="Please Enter Name">
+                        <input id="name" type="text" name="name" class="form-control w-full @error('name') border-danger @enderror" value="{{ isset($clientReview->name) ? $clientReview->name : old('name') }}" placeholder="Please Enter Name">
                         @error('name')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="review" class="form-label">Review</label>
-                        <textarea name="review" id="review" class="form-control w-full" cols="10" rows="10" placeholder="Please Enter Review">{{ isset($clientReview->review) ? $clientReview->review : old('review') }}</textarea>
+                        <textarea name="review" id="review" class="form-control w-full @error('review') border-danger @enderror" cols="10" rows="10" placeholder="Please Enter Review">{{ isset($clientReview->review) ? $clientReview->review : old('review') }}</textarea>
                         @error('review')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mt-3">
                         <label for="rating" class="form-label">Rating</label>
-                        <input id="rating" type="text" name="rating" class="form-control w-full" value="{{ isset($clientReview->rating) ? $clientReview->rating : old('rating') }}" placeholder="Please Enter Rating">
+                        <input id="rating" type="text" name="rating" class="form-control w-full @error('rating') border-danger @enderror" onInput="this.value = this.value.replace(/[^1-5.]/g, '').replace(/(\..*?)\..*/g, '$1').substr(0, 3);"
+                        value="{{ isset($clientReview->rating) ? $clientReview->rating : old('rating') }}" placeholder="Please Enter Rating">
                         @error('rating')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
