@@ -53,26 +53,30 @@ Route::controller(AuthController::class)->prefix('admin')->middleware('logged_in
 });
 
 Route::middleware('auth')->prefix('admin')->group(function() {
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('dashboard', [FrontEndController::class, 'dashboard'])->name('dashboard');
+
+    Route::resource('goals', GoalController::class);
+    Route::resource('our-clients', OurClientController::class);
+
+    Route::get('enquiries', [FrontEndController::class, 'enquiriesList'])->name('enquiries.index');
+    Route::delete('enquiries/{enquiry}', [FrontEndController::class, 'destroy'])->name('enquiries.destroy');
 
     Route::resource('hero-sections', HeroSectionController::class);
     Route::resource('point-of-differences', PointOfDifferenceController::class);
+
     Route::resource('services', ServiceController::class);
     Route::resource('service-categories', ServiceCategoryController::class);
     Route::resource('core-values', CoreValueController::class);
-    Route::resource('technologies', TechnologyController::class);
     Route::resource('achievements', AchievementController::class);
-    Route::resource('goals', GoalController::class);
-    Route::resource('our-clients', OurClientController::class);
+    Route::resource('technologies', TechnologyController::class);
+
     Route::resource('portfolios', PortfolioController::class);
     Route::resource('key-features', KeyFeatureController::class);
     Route::resource('our-processes', OurProcessController::class);
     Route::resource('client-reviews', ClientReviewController::class);
 
-    Route::get('enquiries', [FrontEndController::class, 'enquiriesList'])->name('enquiries.index');
-    Route::delete('enquiries/{enquiry}', [FrontEndController::class, 'destroy'])->name('enquiries.destroy');
-
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('settings/store', [SettingController::class, 'store'])->name('settings.store');
+
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
