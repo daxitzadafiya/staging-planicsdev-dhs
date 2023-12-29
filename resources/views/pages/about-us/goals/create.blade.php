@@ -45,7 +45,7 @@
                     </div>
                     @if(isset($goal->image) && !empty($goal->image))
                         <div class="w-24 h-24 image-fit mt-3 cursor-pointer zoom-in">
-                            <img class="rounded-full" src="{{ url(Storage::url($goal->image)) }}">
+                            <img class="rounded-full" src="{{ url(Storage::url($goal->image)) }}" style="background-color: #7854f7">
                         </div>
                     @endif
                     <div class="mt-3">
