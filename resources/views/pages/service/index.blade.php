@@ -54,8 +54,8 @@
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3" href="{{ route('services.edit', $service) }}"> 
-                                        <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> 
+                                    <a class="flex items-center text-primary mr-3" href="{{ route('services.edit', $service) }}"> 
+                                        <i data-lucide="edit" class="w-4 h-4 mr-1"></i> 
                                         Edit 
                                     </a>
                                     <button type="button" class="flex items-center text-danger" onclick="deleteRow({{ $service->id }})" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"> 
