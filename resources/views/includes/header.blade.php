@@ -20,7 +20,16 @@
                         <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">{{ Auth::user()->email }}</div>
                     </li>
                     <li>
-                        <a href="{{ route('logout') }}" class="dropdown-item hover:bg-white/5"> <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
+                        <a href="{{ route('profile.edit') }}" class="dropdown-item hover:bg-white/5">
+                            <i data-lucide="user" class="w-4 h-4 mr-2"></i> 
+                            Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logout') }}" class="dropdown-item hover:bg-white/5"> 
+                            <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> 
+                            Logout 
+                        </a>
                     </li>
                 </ul>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Request\ProfileRequest;
 use App\Mail\EnquiryMail;
 use App\Models\Achievement;
 use App\Models\ClientReview;
@@ -16,10 +17,13 @@ use App\Models\PointOfDifference;
 use App\Models\Portfolio;
 use App\Models\Service;
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class FrontEndController extends Controller
@@ -147,5 +151,25 @@ class FrontEndController extends Controller
         $enquiry->delete();
 
         return Redirect::route('enquiries.index');
+    }
+
+    public function profile(): View
+    {
+        $user = Auth::user();
+
+        return view('pages.profile.create', compact('user'));
+    }
+
+    public function profileUpdate(ProfileRequest $request, User $user): RedirectResponse
+    {
+        $data = $request->validated();
+
+        if($request->has('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+
+        return Redirect::back();
     }
 }

@@ -55,6 +55,9 @@ Route::controller(AuthController::class)->prefix('admin')->middleware('logged_in
 Route::middleware('auth')->prefix('admin')->group(function() {
     Route::get('dashboard', [FrontEndController::class, 'dashboard'])->name('dashboard');
 
+    Route::get('profile/edit', [FrontEndController::class, 'profile'])->name('profile.edit');
+    Route::put('profile/update/{user}', [FrontEndController::class, 'profileUpdate'])->name('profile.update');
+
     Route::resource('goals', GoalController::class);
     Route::resource('our-clients', OurClientController::class);
 
