@@ -43,10 +43,6 @@ Route::name('frontend.')->group(function () {
     Route::post('enquiries', [FrontEndController::class, 'enquiry'])->name('enquiries.store');
 });
 
-Route::middleware('ip-restriction')->group(function () {
-    Route::get('/secure-page', [FrontEndController::class, 'restrictedPage']);
-});
-
 Route::controller(AuthController::class)->prefix('admin')->middleware('logged_in')->group(function() {
     Route::get('login', 'loginView')->name('login');
     Route::post('login', 'login')->name('login.check');
