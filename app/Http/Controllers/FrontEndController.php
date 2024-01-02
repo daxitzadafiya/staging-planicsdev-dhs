@@ -172,4 +172,9 @@ class FrontEndController extends Controller
 
         return Redirect::back();
     }
+
+    public function restrictedPage(): View
+    {
+        return view('restricted-page');
+    }
 }
