@@ -22,6 +22,6 @@ class IPRestrictionMiddleware
             return $next($request);
         }
 
-        abort(403, 'Unauthorized access. Your IP is not allowed.');
+        abort(403, 'Access Denied!');
     }
 }
