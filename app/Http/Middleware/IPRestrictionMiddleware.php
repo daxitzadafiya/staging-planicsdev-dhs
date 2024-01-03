@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class IPRestrictionMiddleware
 {
@@ -16,9 +17,12 @@ class IPRestrictionMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $allowedIPs = ['2405:201:201c:40d3:4e26:9250:9855:b3e9', '2405:201:201c:413e:811f:9380:aaa1:8498'];
+        $allowedIPs = [
+            '2405:201:201c:40d3',
+            '2405:201:201c:413e'
+        ];
 
-        if (in_array($request->ip(), $allowedIPs)) {
+        if(Str::contains($request->ip(), $allowedIPs)) {
             return $next($request);
         }
 
